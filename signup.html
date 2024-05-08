@@ -21,15 +21,63 @@
             <ul class="navbar-nav ml-auto">
               <div class="navbar-nav ml-auto koooo" >
               <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-              <li class="nav-item"><a href="signup.html" class="nav-link">Donate</a></li>
+              <li class="nav-item"><a href="Donate.html" class="nav-link">Donate</a></li>
               <li class="nav-item"><a href="contacts.html" class="nav-link">Contact</a></li>
               </div>
               <li class="nav-item cta cta-colored"><a href="login.html" class="btn">Login</a></li>
-              <li class="nav-item  cta1 cta-colored"><a href="Login.html" class="btn">Sign up</a></li>
+              <li class="nav-item  cta1 cta-colored"><a href="signup.html" class="btn">Sign up</a></li>
             </ul>
           </div>
         </div>
       </nav>
+    
+    <div class="login-container">
+        <table>
+            <tr>
+                <td><input type="radio" id="Donor" name="signup" value="Donor"><label for="Donor">Donor</label></td>
+            </tr>
+            <tr>
+                <td><input type="radio" id="Organization" name="signup" value="Organization"><label for="Organization">Organization</label></td>
+            </tr>
+        </table>
+        <button id="enterButton">Enter</button>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('enterButton').addEventListener('click', navigateToPage);
+    });
+
+    function navigateToPage() {
+        console.log("navigateToPage function is triggered");
+        var radios = document.getElementsByName('signup');
+        var selectedValue = null;
+        for (var i = 0; i < radios.length; i++) {
+            if (radios[i].checked) {
+                selectedValue = radios[i].value;
+                break;
+            }
+        }
+        console.log("Selected value:", selectedValue);
+
+        if (selectedValue) {
+            switch(selectedValue) {
+                case 'Donor':
+                    console.log("Redirecting to /donorPage.html");
+                    window.location.href = 'donor_reg.html';
+                    break;
+                case 'Organization':
+                    console.log("Redirecting to /organizationPage.html");
+                    window.location.href = 'organization_reg.html';
+                    break;
+            }
+        } else {
+            alert('Please select an option to proceed.');
+        }
+    }
+    </script>
+      
+    
 
       
       <!--end nav--> 

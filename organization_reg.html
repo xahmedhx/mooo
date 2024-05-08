@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mooo</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-dark  ftco_navbar ftco-navbar-light scrolled awake" id="ftco-navbar">
+        <div class="container">
+          <a class="navbar-brand" href="index.html">Mooo</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="oi oi-menu"></span> Menu
+          </button>
+    
+          <div class="collapse navbar-collapse" id="ftco-nav">
+            <ul class="navbar-nav ml-auto">
+              <div class="navbar-nav ml-auto koooo" >
+              <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+              <li class="nav-item"><a href="Donate.html" class="nav-link">Donate</a></li>
+              <li class="nav-item"><a href="contacts.html" class="nav-link">Contact</a></li>
+              </div>
+              <li class="nav-item cta cta-colored"><a href="login.html" class="btn">Login</a></li>
+              <li class="nav-item  cta1 cta-colored"><a href="signup.html" class="btn">Sign up</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <h1>Organization Portal</h1>
+      <!-- Registration Journey -->
+      <div id="registration" class="journey">
+          <h2>Registration</h2>
+          <form id="registration-form">
+              <!-- Registration form fields -->
+              <label for="orgName">Organization Name:</label>
+              <input type="text" id="orgName" name="orgName" required>
+              <!-- Upload documents -->
+              <label for="document">Upload Document:</label>
+              <input type="file" id="document" name="document" required>
+              <button type="submit">Submit</button>
+          </form>
+      </div>
+  
+      <script>
+          // Wait for the DOM to be fully loaded
+          document.addEventListener('DOMContentLoaded', function() {
+              // Get the form element by its ID
+              var form = document.getElementById('registration-form');
+  
+              // Listen for the submit event on the form
+              form.addEventListener('submit', function(event) {
+                  // Prevent the form from submitting normally
+                  event.preventDefault();
+  
+                  // Show an alert message
+                  alert('You have successfully registered an account.');
+  
+                  // Redirect to the login page
+                  window.location.href = 'login.html';
+              });
+          });
+        </script>
