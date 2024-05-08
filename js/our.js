@@ -38,17 +38,17 @@ function logout() {
 function login() {
     var username = document.getElementById("username").value;
     var password = document.getElementById("password").value;
-    if (username === "admin" && password === "admin123") {
+    if (username === "admin" && password === "123") {
         localStorage.setItem("username", username);
         window.location.href = "admin.html";
 
-    } else if (username === "donor" && password === "donor123") {
+    } else if (username === "donor" && password === "123") {
         localStorage.setItem("username", username);
         window.location.href = "donor.html";
     }
-    else if (username === "orgnization" && password === "orgnization123"){
+    else if (username === "organization" && password === "123"){
         localStorage.setItem("username", username);
-        window.location.href = "orgnization.html";
+        window.location.href = "organization.html";
     }
     else
     {
@@ -147,4 +147,136 @@ document.addEventListener("DOMContentLoaded", function() {
         alert("Donation submission form submitted!");
     });
 });
+
+function filterOrganizations() {
+    let input = document.getElementById('organization-search-input').value.toUpperCase();
+    let table = document.getElementById('organizations-table'); // Make sure your table has this ID
+    let tr = table.getElementsByTagName('tr');
+
+    for (let i = 0; i < tr.length; i++) {
+        let td = tr[i].getElementsByTagName('td')[0]; // Assuming the name is in the first column
+        if (td) {
+            let textValue = td.textContent || td.innerText;
+            if (textValue.toUpperCase().indexOf(input) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+}
+
+
+function filterDonors() {
+    let input = document.getElementById('donor-search-input').value.toUpperCase();
+    let table = document.getElementById('donors-table'); // Make sure your table has this ID
+    let tr = table.getElementsByTagName('tr');
+
+    for (let i = 0; i < tr.length; i++) {
+        let td = tr[i].getElementsByTagName('td')[0];
+        if (td) {
+            let textValue = td.textContent || td.innerText;
+            if (textValue.toUpperCase().indexOf(input) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+}
+
+
+
+function viewDetails(details) {
+  
+    document.getElementById('details-name').innerText = details.name;
+    document.getElementById('details-type').innerText = details.type;
+    document.getElementById('details-contact').innerText = details.contact;
+    document.getElementById('details-description').innerText = details.description;
+
+    document.getElementById('details-modal').style.display = "block";
+}
+
+function closeDetailsModal() {
+    document.getElementById('details-modal').style.display = "none";
+}
+
+function viewDetails(details) {
+    console.log("Opening modal with details:", details);
+    document.getElementById('details-name').innerText = details.name;
+    document.getElementById('details-type').innerText = details.type;
+    document.getElementById('details-contact').innerText = details.contact;
+    document.getElementById('details-description').innerText = details.description;
+    document.getElementById('details-modal').style.display = 'block';
+}
+
+
+document.body.addEventListener('click', function(event) {
+    if (event.target.matches('button.view-details')) {
+        const details = {
+            name: event.target.getAttribute('data-name'),
+            type: event.target.getAttribute('data-type'),
+            contact: event.target.getAttribute('data-contact'),
+            description: event.target.getAttribute('data-description')
+        };
+        viewDetails(details);
+    }
+});
+
+function closeDetailsModal() {
+    let detailsModal = document.getElementById('details-modal');
+    detailsModal.style.display = "none";
+}
+
+
+function deleteOrganization(button, id) {
+    if (confirm('Are you sure you want to delete this organization?')) {
+        let row = button.parentNode.parentNode;
+        row.parentNode.removeChild(row)
+    
+        fetch('/delete-organization', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ id: id })
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Delete successful', data);
+        })
+        .catch(error => {
+            console.error('Error deleting organization:', error);
+        });
+    }
+}
+function deleteDonor(button, id) {
+    if (confirm('Are you sure you want to delete this Donor?')) {
+        let row = button.parentNode.parentNode;
+        row.parentNode.removeChild(row)
+    
+        fetch('/delete-Donor', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ id: id })
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Delete successful', data);
+        })
+        .catch(error => {
+            console.error('Error deleting Donor:', error);
+        });
+    }
+}
+
+
+function deleteAccount() {
+    if (confirm('Are you sure you want to delete this account?')) {
+        console.log('Account deleted');
+        
+    }
+}
 
