@@ -30,37 +30,119 @@
           </div>
         </div>
       </nav>
-      <h1>Organization Portal</h1>
-      <!-- Registration Journey -->
-      <div id="registration" class="journey">
-          <h2>Registration</h2>
-          <form id="registration-form">
-              <!-- Registration form fields -->
-              <label for="orgName">Organization Name:</label>
-              <input type="text" id="orgName" name="orgName" required>
-              <!-- Upload documents -->
-              <label for="document">Upload Document:</label>
-              <input type="file" id="document" name="document" required>
-              <button type="submit">Submit</button>
-          </form>
-      </div>
-  
-      <script>
-          // Wait for the DOM to be fully loaded
-          document.addEventListener('DOMContentLoaded', function() {
-              // Get the form element by its ID
-              var form = document.getElementById('registration-form');
-  
-              // Listen for the submit event on the form
-              form.addEventListener('submit', function(event) {
-                  // Prevent the form from submitting normally
-                  event.preventDefault();
-  
-                  // Show an alert message
-                  alert('You have successfully registered an account.');
-  
-                  // Redirect to the login page
-                  window.location.href = 'login.html';
-              });
-          });
-        </script>
+      <!-- END nav -->
+
+     <div class="container1">
+    <h1>Organization Registration</h1>
+    <form id="registrationForm" method="POST">
+        <div class="form-group">
+
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" name="firstName" required>
+
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" name="lastName" required>
+
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Prefer not to say</option>
+            </select>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <label for="contactNumber">Contact Number:</label>
+            <input type="tel" id="contactNumber" name="contactNumber" required>
+
+            <label for="orgName">Organization Name:</label>
+            <input type="text" id="orgName" name="orgName" required>
+
+            <label for="orgType">Organization Type:</label>
+            <input type="text" id="orgType" name="orgType" required>
+
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" required>
+
+            <label for="area">Area:</label>
+            <input type="text" id="area" name="area" required>
+
+            <label for="governorate">Governorate:</label>
+            <input type="text" id="governorate" name="governorate" required>
+        </div>
+        <button type="submit">Register</button>
+    </form>
+</div>
+<script>
+    document.getElementById('registrationForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        alert('Registration is successfully registered.');
+        window.location.href = 'login.html';
+    });
+</script>
+
+
+</body>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin-top: 100px;
+
+        }
+
+        .container1 {
+            width: 90%;
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            background-color: #f9f9f9;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="tel"],
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #fd7e14;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #fd7e14;
+        }
+
+
+    </style>
+</html>
