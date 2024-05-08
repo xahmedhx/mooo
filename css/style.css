@@ -1155,3 +1155,36 @@ header {
   content: " ▼";
   font-size: 0.7em;
 }
+
+h1 {
+  color: #f86f2d;
+  text-align: center;
+}
+
+/* General styling for contact information container */
+.contact-info {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 600px;
+}
+
+/* Styling for individual pieces of contact information */
+.contact-info p {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* Bold style for titles within contact information */
+.info-title {
+  font-weight: bold;
+}
+
+/* Style for email link to make it stand out */
+a {
+  color: #007bff; /* Light blue, good for links */
+  text-decoration: none; /* Optional: removes underline */
+}
+
