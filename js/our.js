@@ -86,7 +86,6 @@ function login() {
     }
     updateNavbar();
 }
-
 function showContent(sectionId) {
     var sections = document.querySelectorAll(".content-section");
     sections.forEach(function (section) {
@@ -95,36 +94,114 @@ function showContent(sectionId) {
     document.getElementById(sectionId).classList.add("active");
 }
 
+function deleteRow(button) {
+    if (confirm('Are you sure you want to delete this organization?')) {
+        var row = button.parentNode.parentNode.parentNode; // button -> div -> td -> tr
+        row.parentNode.removeChild(row); // Remove the <tr> from the table body
+    }
+    }
+
+    function filterTable() {
+        var input = document.getElementById('searchBar');
+        var filter = input.value.toUpperCase();
+        var table = document.getElementById('Table');
+        var tr = table.getElementsByTagName('tr');
+      
+        for (var i = 1; i < tr.length; i++) { // Start at 1 to skip the table header
+            var td = tr[i].getElementsByTagName('td')[0]; // Get the first column
+            if (td) {
+                var txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = '';
+                } else {
+                    tr[i].style.display = 'none';
+                }
+            }       
+        }
+    }
+
+//////view details organization////////////////////////////////
 document.addEventListener("DOMContentLoaded", function() {
-    // Fetch organization names from JSON file
-    fetch("organization_names.json")
-        .then(response => response.json())
-        .then(data => {
-            const organizations = data.organizations;
-            const dropdown = document.getElementById("orgNameDropdown");
-            // Populate dropdown menu with organization names
-            organizations.forEach(org => {
-                const option = document.createElement("option");
-                option.text = org;
-                dropdown.add(option);
-            });
-        })
-        .catch(error => {
-            console.error("Error fetching organization names:", error);
-        });
+    var modal = document.getElementById("detailsModal");
+    var span = document.querySelector(".modal .close");
 
-    // Registration form submission
-    const registrationForm = document.getElementById("registration-form");
-    registrationForm.addEventListener("submit", function(event) {
-        event.preventDefault();
-        alert("Registration form submitted!");
-    });
+    // Function to open modal with details, populated dynamically based on arguments
+    window.viewDetailsOrganization = function(name, type, email, phone, actions) {
+        var modalContent = document.getElementById("modalContent");
+        modalContent.innerHTML = `<h2 style="color: #f86f2d;">Organization details</h2>`+`<strong style="font-weight: bold;">Name:</strong> ${name}<br>` +
+                                 `<strong style="font-weight: bold;">Type:</strong> ${type}<br>` +
+                                 `<strong style="font-weight: bold;">Email:</strong> ${email}<br>` +
+                                 `<strong style="font-weight: bold;">Phone:</strong> ${phone}<br>` +
+                                 `<strong style="font-weight: bold;">Actions:</strong> ${actions}`;
+        modal.style.display = "block";
+    }
 
-    // Donation submission form submission
-    const donationForm = document.getElementById("donation-form");
-    donationForm.addEventListener("submit", function(event) {
-        event.preventDefault();
-    alert("Donation submission form submitted!");
-    });
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, also close it
+    window.onclick = function(event) {
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    }
 });
+ ///////////view details donor////////////////////////////////
+document.addEventListener("DOMContentLoaded", function() {
+    var modal = document.getElementById("detailsModal");
+    var span = document.querySelector(".modal .close");
+
+    // Function to open modal with details, populated dynamically based on arguments
+    window.viewDetails= function(name, type, email, phone) {
+        var modalContent = document.getElementById("modalContent");
+        modalContent.innerHTML = `<h2 style="color: #f86f2d;">Donor details</h2>`+`<strong style="font-weight: bold;">Name:</strong> ${name}<br>` +
+                                 `<strong style="font-weight: bold;">Type:</strong> ${type}<br>` +
+                                 `<strong style="font-weight: bold;">Email:</strong> ${email}<br>` +
+                                 `<strong style="font-weight: bold;">Phone:</strong> ${phone}<br>`;
+        modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, also close it
+    window.onclick = function(event) {
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    }
+});
+
+////////////////////////////////////////////////////////////////
+
+function moveToApproved(button) {
+    var row = button.closest('tr'); // More robust way of getting the row
+    var submissionType = row.cells[0].textContent.trim(); // Get the type from the first cell
+
+    var targetTable = (submissionType === "Organization") ? document.getElementById('Table').querySelector('tbody') :
+                      (submissionType === "Donor") ? document.getElementById('table1').querySelector('tbody') : null;
+
+    if (targetTable) {
+        // Move the row to the appropriate table
+        targetTable.appendChild(row);
+        // Optionally change the row, for example, clear the actions
+        row.cells[4].innerHTML = '<span>Approved</span>';
+    } else {
+        console.error('No target table found for:', submissionType);
+    }
+}
+
+function deleteRow(button) {
+    var row = button.closest('tr'); // Get the row
+    row.remove(); // Remove the row
+}
+
+
+
+
+
 

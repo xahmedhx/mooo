@@ -771,21 +771,7 @@ animation: loader-dash 1.5s ease-in-out infinite;
 stroke-linecap: round; }
 
 
-  .ftco-navbar-light .navbar-nav > .nav-item.cta1 > a {
-    color: #f86f2d;
-    border: 1px solid #f86f2d;
-    background: transparent;
-    padding-top: .5rem;
-    padding-bottom: .5rem;
-    padding-left: 20px;
-    padding-right: 20px;
-    margin-top: 4px;
-    -webkit-border-radius: 30px;
-    -moz-border-radius: 30px;
-    -ms-border-radius: 30px;
-    border-radius: 30px;
-    margin-left: 15px;
-}
+
 
 .navbar-nav.ml-auto.koooo{
 margin-right: 240px;
@@ -1165,7 +1151,7 @@ h1 {
 .contact-info {
   background-color: #fff;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  box-shadow: 8px 8px 10px 8px rgba(0,0,0,0.1);
   padding: 20px;
   margin: 20px auto;
   max-width: 600px;
@@ -1188,3 +1174,100 @@ a {
   text-decoration: none; /* Optional: removes underline */
 }
 
+.button-cta1 {
+  color: #f86f2d;
+  border: 1px solid #f86f2d;
+  background: transparent;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-right: 20px;
+  margin-top: 4px;
+  border-radius: 30px; /* Modern syntax, which combines all vendor prefixes */
+  display: inline-block; /* To make it inline with the surrounding text */
+  font-size: 1rem; /* To make the button bigger */
+  line-height: 1.5; /* To make the button bigger */
+  font-weight: 600; /* To make the button bold */
+  text-align: center; /* To center the button vertically */
+  text-decoration: none; /* To remove the underline */
+  cursor: pointer; /* To indicate it's a clickable button */
+  transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effect */
+}
+
+.button-cta1:hover {
+  background-color: #f86f2d; /* Background color on hover */
+  color: white; /* Text color on hover */
+}
+
+.button-cta1-inverted {
+  color: white; /* Text color initially white */
+  background-color: #f86f2d; /* Background color is orange */
+  border: 1px solid #f86f2d; /* Solid border with the same color as background */
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 20px; /* Ensures uniform padding on both sides */
+  padding-right: 20px;
+  margin-top: 4px;
+  border-radius: 30px; /* Rounded corners */
+  display: inline-block; /* Inline-block for proper alignment */
+  font-size: 1rem; /* Font size as 1rem */
+  line-height: 1.5; /* Sufficient line height for clear visibility */
+  font-weight: 600; /* Bold font weight */
+  text-align: center; /* Center text horizontally */
+  text-decoration: none; /* No underline */
+  cursor: pointer; /* Pointer to indicate it's clickable */
+  transition: background-color 0.3s, color 0.3s; /* Smooth color transition */
+  white-space: nowrap; /* Prevents text from wrapping */
+  min-width: 120px; /* Minimum width to accommodate text */
+}
+
+.button-cta1-inverted:hover {
+  background-color: white; /* White background on hover */
+  color: #f86f2d; /* Orange text on hover */
+}
+
+
+.button-container {
+  display: flex; /* Enables flexbox */
+  justify-content: space-around; /* This will space out the buttons evenly */
+  align-items: center; /* This will vertically align buttons in case they are of different heights */
+}
+
+.button-cta1, .button-cta1-inverted {
+  margin: 0 10px; /* Adds horizontal margin for spacing between buttons */
+  flex: 0 1 auto; /* Flex item will grow and shrink but not beyond its content size */
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 10% auto;
+  padding: 20px;
+  border: 1px solid #000000;
+  width: 50%;
+  color: #000;
+}
+
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}

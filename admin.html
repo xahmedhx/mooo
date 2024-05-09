@@ -18,86 +18,203 @@
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="oi oi-menu"></span> Menu
           </button>
-    
           <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
               <div class="navbar-nav ml-auto koooo" >
               <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
-              <li class="nav-item"><a href="signup.html" class="nav-link">Donate</a></li>
               <li class="nav-item"><a href="contacts.html" class="nav-link">Contact</a></li>
               </div>
-              <li class="nav-item cta cta-colored"><a href="login.html" class="btn">Login</a></li>
-              <li class="nav-item  cta1 cta-colored"><a href="signup.html" class="btn">Sign up</a></li>
+              <li class="nav-item cta cta-colored"><a href="index.html" class="btn">logout</a></li>
+              
             </ul>
           </div>
         </div>
       </nav>
-      <!-- END nav -->
-
-        <div class="dashboard-container hidden" id="dashboard">
+        <div class="dashboard-container hidden" id="dashboard" style="margin-top: 75px;">
             <aside class="sidebar">
                 <ul>
                     <li><a href="#" onclick="showContent('organizations')">Organizations</a></li>
                     <li><a href="#" onclick="showContent('donors')">Donors</a></li>
                     <li><a href="#" onclick="showContent('submissions')">Submissions</a></li>
-                    <li><a href="#" onclick="showContent('requests')">Requests</a></li>
                     <li><a href="#" onclick="showContent('account-settings')">Account Settings</a></li>
-                    <li><a href="#" onclick="showContent('registered-organizations')">Registered Organizations</a></li>
-                    <li><a href="index.html" onclick="logout()">Logout</a></li>
+                    <li><a href="#" onclick="showContent('account-management-modal')">Account Managements</a></li>
+                    <li><a href="#" onclick="logout()">Logout</a></li>
                 </ul>
             </aside>
             <main class="content">
                 <div id="organizations" class="content-section hidden">
                     <h2>Organizations List</h2>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Organization Name</th>
-                                <th>Type</th>
-                                <th>Contact</h>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Helping Hands</td>
-                                <td>Non-Profit</td>
-                                <td>helpinghands@example.com</td>
-                                <td>
-                                    <button>View Details</button>
-                                    <button>Delete</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                        <input type="text" id="searchBar" placeholder="Search organizations..." onkeyup="filterTable()">
+                    <section>
+                        <table id="Table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Type</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Actions</th>
+                                    <th>Operations</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Green Horizon</td>
+                                    <td>Environmental NGO</td>
+                                    <td>contact@greenhorizon.org</td>
+                                    <td>+1234567890</td>
+                                    <td>Tree planting, Education, Conservation</td>
+                                    <td>
+                                        <div class="button-container">
+                                            <button onclick="viewDetailsOrganization('Green Horizon', 'Environmental NGO', 'contact@greenhorizon.org', '+1234567890', 'Tree planting, Education, Conservation')" class="button-cta1-inverted">View details</button>
+                                            <button onclick="deleteRow(this)" class="button-cta1">Delete</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Tech Innovate</td>
+                                    <td>Technology Startup</td>
+                                    <td>info@techinnovate.com</td>
+                                    <td>+0987654321</td>
+                                    <td>AI Solutions, Meetups, Open-source</td>
+                                    <td>
+                                        <div class="button-container">
+                                            <button onclick="viewDetailsOrganization('Tech Innovate', 'Technology Startup', 'info@techinnovate.com', '+0987654321', 'AI Solutions, Meetups, Open-source')" class="button-cta1-inverted">View details</button>
+                                            <button onclick="deleteRow(this)" class="button-cta1">Delete</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Bright Future Schools</td>
+                                    <td>Educational Institution</td>
+                                    <td>admissions@brightfutureschools.edu</td>
+                                    <td>+1357924680</td>
+                                    <td>Curriculum, Exchanges, Scholarships</td>
+                                    <td>
+                                        <div class="button-container">
+                                            <button onclick="viewDetailsOrganization('Bright Future Schools', 'Educational Institution', 'admissions@brightfutureschools.edu', '+1357924680', 'Curriculum, Exchanges, Scholarships')" class="button-cta1-inverted">View details</button>
+                                            <button onclick="deleteRow(this)" class="button-cta1">Delete</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Healthy Living</td>
+                                    <td>Wellness Center</td>
+                                    <td>support@healthyliving.org</td>
+                                    <td>+2468013579</td>
+                                    <td>Yoga, Nutrition, Stress Management</td>
+                                    <td>
+                                        <div class="button-container">
+                                            <button onclick="viewDetailsOrganization('Healthy Living', 'Wellness Center', 'support@healthyliving.org', '+2468013579', 'Yoga, Nutrition, Stress Management')" class="button-cta1-inverted">View details</button>
+                                            <button onclick="deleteRow(this)" class="button-cta1">Delete</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Global Builders</td>
+                                    <td>Construction Company</td>
+                                    <td>projects@globalbuilders.net</td>
+                                    <td>+8642097531</td>
+                                    <td>Building, Construction, Infrastructure</td>
+                                    <td>
+                                        <div class="button-container">
+                                            <button onclick="viewDetailsOrganization('Global Builders', 'Construction Company', 'projects@globalbuilders.net', '+8642097531', 'Building, Construction, Infrastructure')" class="button-cta1-inverted">View details</button>
+                                            <button onclick="deleteRow(this)" class="button-cta1">Delete</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                    </section>
+
+
                 </div>
     
                 <div id="donors" class="content-section hidden">
                     <h2>Donors List</h2>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Donor Name</th>
-                                <th>Role</th>
-                                <th>Contact</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>John Doe</td>
-                                <td>Teacher</td>
-                                <td>johndoe@example.com</td>
-                                <td>
-                                    <button>View Details</button>
-                                    <button>Delete</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <section>
+                        <table id="table1">
+                            <thead>
+                                <tr>
+                                    <th>Donor Name</th>
+                                    <th>Role</th>
+                                    <th>Contact</th>
+                                    <th>Actions</th>
+                                    <th>Operations</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Alice Johnson</td>
+                                    <td>Philanthropist</td>
+                                    <td>alice.johnson@example.com</td>
+                                    <td>Donated $15,000</td>
+                                    <td>
+                                        <div class="button-container">
+                                            <button onclick="viewDetails('Alice Johnson', 'Philanthropist', 'alice.johnson@example.com', 'Donated $15,000')" class="button-cta1-inverted">View details</button>
+                                            <button onclick="deleteRow(this)" class="button-cta1">Delete</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Bob Smith</td>
+                                    <td>Entrepreneur</td>
+                                    <td>bob.smith@example.com</td>
+                                    <td>Donated $20,000</td>
+                                    <td>
+                                        <div class="button-container">
+                                            <button onclick="viewDetails('Bob Smith', 'Entrepreneur', 'bob.smith@example.com', 'Donated $20,000')" class="button-cta1-inverted">View details</button>
+                                            <button onclick="deleteRow(this)" class="button-cta1">Delete</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Carol Taylor</td>
+                                    <td>Retired</td>
+                                    <td>carol.taylor@example.com</td>
+                                    <td>Donated $5,000</td>
+                                    <td>
+                                        <div class="button-container">
+                                            <button onclick="viewDetails('Carol Taylor', 'Retired', 'carol.taylor@example.com', 'Donated $5,000')" class="button-cta1-inverted">View details</button>
+                                            <button onclick="deleteRow(this)" class="button-cta1">Delete</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>David Lee</td>
+                                    <td>Investor</td>
+                                    <td>david.lee@example.com</td>
+                                    <td>Donated $30,000</td>
+                                    <td>
+                                        <div class="button-container">
+                                            <button onclick="viewDetails('David Lee', 'Investor', 'david.lee@example.com', 'Donated $30,000')" class="button-cta1-inverted">View details</button>
+                                            <button onclick="deleteRow(this)" class="button-cta1">Delete</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Emma Wilson</td>
+                                    <td>Artist</td>
+                                    <td>emma.wilson@example.com</td>
+                                    <td>Donated $10,000</td>
+                                    <td>
+                                        <div class="button-container">
+                                            <button onclick="viewDetails('Emma Wilson', 'Artist', 'emma.wilson@example.com', 'Donated $10,000')" class="button-cta1-inverted">View details</button>
+                                            <button onclick="deleteRow(this)" class="button-cta1">Delete</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                    
+                    
+                    
                 </div>
+
     
-                <div id="submissions" class="content-section hidden">
+                <div id="submissions" class="content-section">
                     <h2>Submissions Review</h2>
                     <table>
                         <thead>
@@ -105,6 +222,7 @@
                                 <th>Submission Type</th>
                                 <th>Name</th>
                                 <th>Details</th>
+                                <th>Document</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -112,94 +230,111 @@
                             <tr>
                                 <td>Organization</td>
                                 <td>Helping Hands</td>
-                                <td>Documents Uploaded</td>
+                                <td>Non-profit organization helping worldwide.</td>
+                                <td><a href="helping_hands_docs.pdf" download="HelpingHandsDocuments">Download</a></td>
                                 <td>
-                                    <button>Accept</button>
-                                    <button>Reject</button>
+                                    <div class="button-container">
+                                    <button onclick="moveToApproved(this)" class="button-cta1-inverted">Accept</button>
+                                    <button onclick="deleteRow(this)" class="button-cta1">Reject</button>
+                                     </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Donor</td>
+                                <td>Alice Johnson</td>
+                                <td>Volunteering as a teacher</td>
+                                <td><a href="alice_johnson_support_letter.pdf" download="AliceJohnsonSupportLetter">Download</a></td>
+                                <td>
+                                    <div class="button-container">
+                                        <button onclick="moveToApproved(this)" class="button-cta1-inverted">Accept</button>
+                                        <button onclick="deleteRow(this)" class="button-cta1">Reject</button>
+                                         </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Organization</td>
+                                <td>Green World</td>
+                                <td>Focus on environmental issues and green technology.</td>
+                                <td><a href="green_world_report.pdf" download="GreenWorldReport">Download</a></td>
+                                <td>
+                                    <div class="button-container">
+                                        <button onclick="moveToApproved(this)" class="button-cta1-inverted">Accept</button>
+                                        <button onclick="deleteRow(this)" class="button-cta1">Reject</button>
+                                         </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Donor</td>
+                                <td>Mark Benson</td>
+                                <td>Philanthropist volunteering as a doctor.</td>
+                                <td><a href="mark_benson_docs.pdf" download="MarkBensonDocuments">Download</a></td>
+                                <td>
+                                    <div class="button-container">
+                                        <button onclick="moveToApproved(this)" class="button-cta1-inverted">Accept</button>
+                                        <button onclick="deleteRow(this)" class="button-cta1">Reject</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Organization</td>
+                                <td>Safe Haven</td>
+                                <td>Provides shelter and rehabilitation services.</td>
+                                <td><a href="safe_haven_info.pdf" download="SafeHavenInfo">Download</a></td>
+                                <td>
+                                    <div class="button-container">
+                                        <button onclick="moveToApproved(this)" class="button-cta1-inverted">Accept</button>
+                                        <button onclick="deleteRow(this)" class="button-cta1">Reject</button>
+                                    </div>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-    
-                <div id="requests" class="content-section hidden">
-                    <h2>Request Management</h2>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Request Type</th>
-                                <th>Name</th>
-                                <th>Details</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Volunteer</td>
-                                <td>John Doe</td>
-                                <td>Teacher</td>
-                                <td>
-                                    <button>Accept</button>
-                                    <button>Reject</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-    
+                    
                 <div id="account-settings" class="content-section hidden">
+                    <div class="modal-content">
                     <h2>Account Settings</h2>
-                    <form>
-                        <div>
-                            <label>New Password</label>
                             <input type="password" placeholder="New Password" required>
-                        </div>
-                        <div>
-                            <label>Confirm Password</label>
-                            <input type="password" placeholder="Confirm Password" required>
-                        </div>
+                            <input type="password" placeholder="Confirm Password" required><br>
+                       
                         <button type="submit">Change Password</button>
-                    </form>
+                        </div>
                 </div>
     
-                <div id="registered-organizations" class="content-section hidden">
-                    <h2>Registered Organizations</h2>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Organization Name</th>
-                                <th>Type</th>
-                                <th>Contact</th>
-                                <th>Location</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Helping Hands</td>
-                                <td>Non-Profit</td>
-                                <td>helpinghands@example.com</td>
-                                <td>City, Country</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-    
-                <div id="organization-details" class="content-section hidden">
-                    <h2>Organization Details</h2>
-                    <div class="details">
-                        <p><strong>Name:</strong> Helping Hands</p>
-                        <p><strong>Type:</strong> Non-Profit</p>
-                        <p><strong>Contact:</strong> helpinghands@example.com</p>
-                        <p><strong>Location:</strong> City, Country</p>
-                        <p><strong>Address:</strong> 123 Main Street</p>
-                        <p><strong>Description:</strong> Helping Hands is a non-profit organization dedicated to helping those in need.</p>
-                        <button>Delete</button>
+      
+                <div id="account-management-modal" class="content-section hidden">
+                    <div class="modal-content">
+                        <h2>Account Managements</h2>
+                        <form>
+                            <label for="user-email">Email:</label>
+                            <input type="email" id="user-email" name="email" required>
+                            
+                            <label for="user-role">Role:</label>
+                            <select id="user-role" name="role">
+                                <option value="admin">Admin</option>
+                                <option value="donor">Donor</option>
+                                <option value="organization">Organization</option>
+                            </select>
+                            <button type="submit">Update Account</button>
+                            <button type="button" onclick="deleteAccount()">Delete Account</button>
+                        </form>
                     </div>
                 </div>
-    
+              
             </main>
         </div>
+        <!-- The Modal -->
+<div id="detailsModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <p id="modalContent"></p>
+    </div>
+</div>
+
+        
+        
     </body>
+    
 
     <script src="js/our.js"></script>
 </html>
