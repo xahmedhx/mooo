@@ -6,6 +6,7 @@ function filterCategory(category = "all") {
   var additionalFiltersCloth = document.getElementById("additionalFiltersCloth");
   var additionalFiltersSchool = document.getElementById("additionalFiltersSchool");
   var toyDonationSection = document.getElementById("toyDonationSection");
+  var toyDonationSection = document.getElementById("teachingPostsSection");
 
   for (var i = 0; i < li.length; i++) {
     var txtValue = li[i].textContent || li[i].innerText;
@@ -24,6 +25,7 @@ function filterCategory(category = "all") {
   toyDonationSection.style.display = category === "toys" ? "block" : "none";
   foodDonationSection.style.display = category === "food" ? "block" : "none";
   medicalDonationSection.style.display = category === "medical" ? "block" : "none"; 
+  teachingPostsSection.style.display = category === "teachingPostsSection" ? "block" : "none";
 }
 
 
@@ -84,10 +86,7 @@ document.addEventListener('click', function(event) {
 });
 
 // Function to handle quantity selection for food donations
-function selectQuantity() {
-  // Implement logic to allow donors to choose the quantity of a specific food item
-  // This could be an input field or dropdown menu
-}
+
 
 // Call the populateFoodRequests function when the page loads
 window.onload = function() {
@@ -413,6 +412,104 @@ document.querySelectorAll('.info-btn').forEach(function(button) {
     showToyDetailsModal(); // Call function to show toy details modal
   });
 });
+function editAccount() {
+  document.getElementById('account-info').style.display = 'none';
+  document.getElementById('edit-form').style.display = 'block';
+
+  // Populate the edit form with current account information
+  document.getElementById('new-name').value = document.getElementById('name').innerText;
+  document.getElementById('new-email').value = document.getElementById('email').innerText;
+}
+
+function cancelEdit() {
+  document.getElementById('account-info').style.display = 'block';
+  document.getElementById('edit-form').style.display = 'none';
+}
+
+function saveChanges() {
+  // Update account information with values from the edit form
+  var newName = document.getElementById('new-name').value;
+  var newEmail = document.getElementById('new-email').value;
+
+  document.getElementById('name').innerText = newName;
+  document.getElementById('email').innerText = newEmail;
+
+  // Hide the edit form and show the updated account information
+  document.getElementById('account-info').style.display = 'block';
+  document.getElementById('edit-form').style.display = 'none';
+}
+
+function deleteAccount() {
+  if (confirm("Are you sure you want to delete your account?")) {
+      // Perform delete action here, like clearing Local Storage or showing a confirmation message
+      alert("Account deleted successfully.");
+  }
+}
+
+
+// Function to filter teaching posts by category
+function filterTeachingPosts(category) {
+  const teachingPosts = document.querySelectorAll('.category-teaching');
+  
+  // Loop through all teaching posts
+  teachingPosts.forEach(post => {
+    // Check if the teaching post belongs to the selected category
+    if (post.classList.contains(category)) {
+      // Show the teaching post
+      post.style.display = 'block';
+    } else {
+      // Hide the teaching post if it doesn't belong to the selected category
+      post.style.display = 'none';
+    }
+  });
+}
+
+// Function to display details of a selected teaching post
+function showTeachingPostDetails(title, subject, area, governorate, students) {
+  const modal = document.getElementById('teachingPostDetailsModal');
+  const titleElement = document.getElementById('teachingPostTitle');
+  const detailsElement = document.getElementById('teachingPostDetails');
+  
+  // Populate modal with teaching post details
+  titleElement.textContent = title;
+  detailsElement.textContent = `Subject: ${subject}, Area: ${area}, Governorate: ${governorate}, Number of Students: ${students}`;
+  
+  // Display the modal
+  modal.style.display = 'block';
+}
+
+// Function to close the teaching post details modal
+function closeTeachingPostDetailsModal() {
+  const modal = document.getElementById('teachingPostDetailsModal');
+  modal.style.display = 'none';
+}
+
+// Event listener to trigger the display of teaching post details when a teaching post is clicked
+document.addEventListener('click', function(event) {
+  if (event.target.classList.contains('info-btn')) {
+    const listItem = event.target.closest('.category-teaching');
+    const title = listItem.querySelector('a').textContent.trim();
+    const subject = listItem.classList[1]; // Assumes that the subject is the second class
+    const area = listItem.classList[2]; // Assumes that the area is the third class
+    const governorate = listItem.classList[3]; // Assumes that the governorate is the fourth class
+    const students = parseInt(listItem.getAttribute('data-students')); // Assuming data-students attribute contains the number of students
+    showTeachingPostDetails(title, subject, area, governorate, students);
+  }
+});
+
+// Function to handle fulfillment of a teaching post
+function fulfillTeachingPost() {
+  // Perform actions to fulfill the teaching post, such as notifying the organization
+  
+  // Close the modal
+  closeTeachingPostDetailsModal();
+}
+
+// Call the function to populate teaching posts when the page loads
+window.onload = function() {
+  // Populate teaching posts (Assuming you have a function named populateTeachingPosts)
+  populateTeachingPosts();
+};
 
 
 
@@ -426,4 +523,14 @@ document.querySelectorAll('.info-btn').forEach(function(button) {
 
 
 
+
+// Function to toggle the visibility of the teaching posts section
+function toggleTeachingPostsSection() {
+  var section = document.getElementById("teachingPostsSection");
+  if (section.style.display === "none") {
+    section.style.display = "block";
+  } else {
+    section.style.display = "none";
+  }
+}
 
