@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mooo</title>
-
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
@@ -48,6 +49,30 @@
                     <option value="other">prefer not to say</option>
                 </select>
 
+                <label for="expertise">Expertise:</label>
+                <select id="expertise" name="expertise">
+                    <option value="Regular Donor">Regular Donor</option>
+                    <option value="Doctor">Doctor</option>
+                    <option value="Teacher">Teacher</option>
+                </select>
+
+                <div id="additionalRequirements" style="display:none;">
+                    <label for="subjects">Subjects you can teach</label>
+                    <input type="text" id="subjects" name="Subjects" required>
+
+                    <label for="numberOfProBono">Number of pro-bonos classes</label>
+                    <input type="number" id="numberOfProBono" name="numberOfProBono" required>
+                </div>
+
+                <label for="">Document proof</label>
+                <input type="file" id="document" name="document" required>
+
+                <label for="proBono">Pro-bono cases:</label>
+                <input type="text" id="proBono" name="proBono" required>
+
+                <label>Your location:</label>
+                <div id="map" style="width: 100%; height: 400px;"></div>
+
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" required>
 
@@ -66,14 +91,19 @@
                 <label for="governorate">Governorate:</label>
                 <input type="text" id="governorate" name="governorate" required>
             </div>
-            <button type="submit">Register</button>
+            <button type="button" onclick="handleDonorSubmit()">Register</button>
         </form>
     </div>
+    <script src="js/our.js"></script>
     <script>
-        document.getElementById('donorRegistrationForm').addEventListener('submit', function(event) {
-            event.preventDefault(); 
-            alert('Registered successfully!');
-        });
+    document.getElementById('expertise').addEventListener('change', function() {
+        var expertiseValue = this.value;
+        if (expertiseValue === "Teacher") {
+            document.getElementById('additionalRequirements').style.display = 'block';
+        } else {
+            document.getElementById('additionalRequirements').style.display = 'none';
+        }
+    });
     </script>
 </body>
 

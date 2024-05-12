@@ -200,6 +200,168 @@ function deleteRow(button) {
     row.remove(); // Remove the row
 }
 
+function handleSubmit() {
+    const orgName = document.getElementById('orgName').value;
+    const documentFile = document.getElementById('document').files.length > 0 ? document.getElementById('document').files[0].name : '';
+    const orgType = document.getElementById('orgType').value;
+
+    // Basic Validation
+    if (!orgName || !documentFile || !orgType) {
+        alert('Please fill all the required fields.');
+        return;
+    }
+
+    const submissionData = {
+        type: "Organization",
+        orgName: orgName,
+        orgType: orgType,
+        documentFile: documentFile
+    };
+
+    localStorage.setItem('submissionData', JSON.stringify(submissionData));
+
+    alert('Signup successful!');
+    window.location.href = "login.html"; // Redirect to the admin page
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const data = JSON.parse(localStorage.getItem('submissionData'));
+
+        const row = table.insertRow(-1);
+        const cell1 = row.insertCell(0);
+        const cell2 = row.insertCell(1);
+        const cell3 = row.insertCell(2);
+        const cell4 = row.insertCell(3);
+        const cell5 = row.insertCell(4);
+
+        cell1.textContent = data.type;
+        cell2.textContent = data.orgName;
+        cell3.textContent = data.orgType;
+        cell4.textContent = data.documentFile.name;
+        cell5.innerHTML = `<button onclick="moveToApproved(this)">Accept</button><button onclick="refuseRow(this)">Refuse</button>`;
+    }
+);
+
+document.addEventListener('DOMContentLoaded', function() {
+    const data = JSON.parse(localStorage.getItem('submissionData'));
+
+    if (data) {
+        const tableBody = document.querySelector('#submissions tbody'); // Targeting the tbody of the submissions table
+        const row = tableBody.insertRow(); // Insert a new row in the tbody
+
+        const cell1 = row.insertCell(0);
+        const cell2 = row.insertCell(1);
+        const cell3 = row.insertCell(2);
+        const cell4 = row.insertCell(3);
+        const cell5 = row.insertCell(4);
+
+        cell1.textContent = data.type;
+        cell2.textContent = data.orgName;
+        cell3.textContent = data.orgType; // Assuming you want to include this detail, adjust accordingly
+        cell4.textContent = data.documentFile; // This should be linked or handled to represent document
+        cell4.innerHTML = `<a href="/path/to/files/${encodeURIComponent(data.documentFile)}" download="${encodeURIComponent(data.documentFile)}">Download</a>`;
+        cell5.innerHTML = `
+            <div class="button-container">
+                <button onclick="moveToApproved(this)" class="button-cta1-inverted">Accept</button>
+                <button onclick="deleteRow(this)" class="button-cta1">Reject</button>
+            </div>
+        `;
+    }
+});
+
+
+///////donor signup///////////
+function handleDonorSubmit() {
+    const donorName = document.getElementById('firstName').value;
+    const donorEmail = document.getElementById('email').value;
+
+    // Basic Validation
+    if (!donorName || !donorEmail) {
+        alert('Please fill all the required fields.');
+        return;
+    }
+
+    const donorSubmissionData = {
+        type: "Donor",
+        donorName: donorName,
+        donorEmail: donorEmail,
+        donationAmount: null
+    };
+
+    localStorage.setItem('donorSubmissionData', JSON.stringify(donorSubmissionData));
+
+    alert('Sign-up Successful');
+    window.location.href = "login.html"; // Redirect to a confirmation or thank you page
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const data = JSON.parse(localStorage.getItem('donorSubmissionData'));
+
+    if (data) {
+        const tableBody = document.querySelector('#submissions tbody'); // Targeting the tbody of the donations table
+        const row = tableBody.insertRow(); // Insert a new row in the tbody
+
+        const cell1 = row.insertCell(0);
+        const cell2 = row.insertCell(1);
+        const cell3 = row.insertCell(2);
+        const cell4 = row.insertCell(3);
+        const cell5 = row.insertCell(4);
+
+        cell1.textContent = data.type;
+        cell2.textContent = data.donorName;
+        cell3.textContent = data.donorEmail;
+        cell4.textContent = data.donationAmount;
+        cell4.innerHTML = `${parseFloat(data.donationAmount).toFixed(2)}`; // Format the donation amount
+        cell5.innerHTML = `
+            <div class="button-container">
+                <button onclick="moveToApproved(this)" class="button-cta1-inverted">Accept</button>
+                <button onclick="deleteRow(this)" class="button-cta1">Reject</button>
+            </div>
+        `;
+    }
+});
+
+
+
+///////////orgSignup////
+document.addEventListener('DOMContentLoaded', function() {
+var map = L.map('map').setView([30.2363510,  31.4609870],13);  // Set initial view to London
+
+// Add OpenStreetMap tiles
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '© OpenStreetMap contributors'
+}).addTo(map);
+
+// Function to add a marker to the map
+function addMarker(e) {
+    // Remove all previous markers
+    map.eachLayer(function(layer) {
+        if (layer instanceof L.Marker) {
+            map.removeLayer(layer);
+        }
+    });
+
+    // Add a new marker at the clicked location
+    L.marker(e.latlng).addTo(map)
+     .bindPopup('You clicked the map at ' + e.latlng.toString())
+     .openPopup();
+}
+
+// Event listener for map clicks
+map.on('click', addMarker);
+});
+/////////////// 
+
+
+
+
+
+
+
+
+
+
 
 
 

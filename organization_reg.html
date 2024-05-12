@@ -7,7 +7,8 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" href="css/animate.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg bg-dark  ftco_navbar ftco-navbar-light scrolled awake" id="ftco-navbar">
@@ -34,21 +35,11 @@
 
      <div class="container1">
     <h1>Organization Registration</h1>
-    <form id="registrationForm" method="POST">
+    <form id="registrationForm">
         <div class="form-group">
 
-            <label for="firstName">First Name:</label>
-            <input type="text" id="firstName" name="firstName" required>
-
-            <label for="lastName">Last Name:</label>
-            <input type="text" id="lastName" name="lastName" required>
-
-            <label for="gender">Gender:</label>
-            <select id="gender" name="gender">
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-                <option value="other">Prefer not to say</option>
-            </select>
+            <label for="orgName">Organization Name:</label>
+            <input type="text" id="orgName" name="orgName" required>
 
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" required>
@@ -56,11 +47,17 @@
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required>
 
-            <label for="contactNumber">Contact Number:</label>
-            <input type="tel" id="contactNumber" name="contactNumber" required>
+            <label for="orgNumber">Contact Number:</label>
+            <input type="tel" id="orgNumber" name="orgNumber" required>
 
-            <label for="orgName">Organization Name:</label>
-            <input type="text" id="orgName" name="orgName" required>
+            <label>Organization Document Upload</label>
+            <form id="uploadForm">
+                <input type="file" id="document" name="document" required>
+            </form>
+            <div id="uploadStatus"></div>
+
+            <label>Click on the map to place your organization's location:</label>
+            <div id="map" style="width: 100%; height: 400px;"></div>
 
             <label for="orgType">Organization Type:</label>
             <input type="text" id="orgType" name="orgType" required>
@@ -74,75 +71,69 @@
             <label for="governorate">Governorate:</label>
             <input type="text" id="governorate" name="governorate" required>
         </div>
-        <button type="submit">Register</button>
+        <button type="button" onclick="handleSubmit()">Register</button>
     </form>
 </div>
-<script>
-    document.getElementById('registrationForm').addEventListener('submit', function(event) {
-        event.preventDefault();
-        alert('Registration is successfully registered.');
-        window.location.href = 'login.html';
-    });
-</script>
+<script src="js/our.js"></script>
+
+
 
 
 </body>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin-top: 100px;
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    margin-top: 100px;
 
-        }
+}
 
-        .container1 {
-            width: 90%;
-            max-width: 600px;
-            margin: auto;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            background-color: #f9f9f9;
-        }
+.container1 {
+    width: 90%;
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    background-color: #f9f9f9;
+}
 
-        h1 {
-            text-align: center;
-            color: #333;
-        }
+h1 {
+    text-align: center;
+    color: #333;
+}
 
-        .form-group {
-            margin-bottom: 15px;
-        }
+.form-group {
+    margin-bottom: 15px;
+}
 
-        label {
-            display: block;
-            margin-bottom: 5px;
-        }
+label {
+    display: block;
+    margin-bottom: 5px;
+}
 
-        input[type="text"],
-        input[type="email"],
-        input[type="password"],
-        input[type="tel"],
-        select {
-            width: 100%;
-            padding: 8px;
-            margin-top: 5px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"],
+select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
 
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #fd7e14;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #fd7e14;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
 
-        button:hover {
-            background-color: #fd7e14;
-        }
-
-
-    </style>
+button:hover {
+    background-color: #fd7e14;
+}
+</style>
 </html>
