@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mooo</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" href="css/animate.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+
+  <body>
+    <nav
+      class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light scrolled awake"
+      id="ftco-navbar"
+    >
+      <div class="container">
+        <a class="navbar-brand" href="index.html">Mooo</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#ftco-nav"
+          aria-controls="ftco-nav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="oi oi-menu"></span> Menu
+        </button>
+
+        <div class="collapse navbar-collapse" id="ftco-nav">
+          <ul class="navbar-nav ml-auto">
+            <div class="navbar-nav ml-auto koooo">
+              <li class="nav-item active">
+                <a href="index.html" class="nav-link">Home</a>
+              </li>
+              <li class="nav-item">
+                <a href="signup.html" class="nav-link">Donate</a>
+              </li>
+              <li class="nav-item">
+                <a href="contacts.html" class="nav-link">Contact</a>
+              </li>
+            </div>
+            <li class="nav-item cta cta-colored">
+              <a href="login.html" class="btn">Login</a>
+            </li>
+            <li class="nav-item cta1 cta-colored">
+              <a href="signup.html" class="btn">Sign up</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <br />
+    <br />
+    <br />
+
+    <h2>Donation requests</h2>
+
+    <input
+      type="text"
+      id="myInput"
+      onkeyup="filterCategory()"
+      placeholder="Search for category names.."
+    />
+
+    <div id="myBtnContainer">
+      <button class="btn active" onclick="filterCategory('all')">
+        Show all
+      </button>
+      <button class="btn" onclick="filterCategory('toys')">Toys</button>
+      <button class="btn" onclick="filterCategory('cloth')">Cloth</button>
+      <button class="btn" onclick="filterCategory('food')">Food</button>
+      <button class="btn" onclick="filterCategory('medical')">
+        Medical Supplies
+      </button>
+      <button class="btn" onclick="filterCategory('school')">
+        School Supplies
+      </button>
+      <button class="btn" onclick=" filterCategory('Blood Donation')">
+        Blood Donations
+      </button>
+    </div>
+
+    <div id="additionalFiltersCloth" style="display: none">
+      <div>
+        <label for="ageFilter">Age:</label>
+        <select id="ageFilter" onchange="applyFilters_Cloth()">
+          <option value="">Select Age...</option>
+          <option value="children">Children</option>
+          <option value="adult">Adult</option>
+        </select>
+      </div>
+      <div>
+        <label for="genderFilter">Gender:</label>
+        <select id="genderFilter" onchange="applyFilters_Cloth()">
+          <option value="">Select Gender...</option>
+          <option value="m">Male</option>
+          <option value="f">Female</option>
+          <option value="unisex">Unisex</option>
+        </select>
+      </div>
+      <div>
+        <label for="seasonFilter">Season:</label>
+        <select id="seasonFilter" onchange="applyFilters_Cloth()">
+          <option value="">Select Season...</option>
+          <option value="winter">Winter</option>
+          <option value="summer">Summer</option>
+          <option value="spring">Spring</option>
+          <option value="autumn">Autumn</option>
+        </select>
+      </div>
+    </div>
+
+    <div id="additionalFiltersSchool" style="display: none">
+      <select id="schoolFilter" onchange="applyFilters_School()">
+        <option value="">Select Type...</option>
+        <option value="books">Books</option>
+        <option value="stationary">Stationary</option>
+      </select>
+    </div>
+
+    <ul id="myUL">
+      <li class="category-cloth children m winter">
+        <a href="#">Children's Winter Jacket</a>
+        -
+        <button
+          class="info-btn"
+          onclick="showDetails_cloth('Childrens Winter Jacket', 'Children', 'Male', 'Winter', 'Polyester', 10)"
+        >
+          Info
+        </button>
+      </li>
+      <li class="category-cloth adult f summer">
+        <a href="#">Women's Summer Dress</a>
+        -
+        <button
+          class="info-btn"
+          onclick="showDetails_cloth('Womens Summer Dress', 'Adult', 'Female', 'Summer', 'Cotton', 20)"
+        >
+          Info
+        </button>
+      </li>
+
+      <li class="category-cloth adult unisex autumn">
+        <a href="#">Unisex Autumn Scarf</a>
+        -
+        <button
+          class="info-btn"
+          onclick="showDetails_cloth('Unisex Autumn Scarf', 'Adult', 'Unisex', 'Autumn', 'Wool', 15)"
+        >
+          Info
+        </button>
+      </li>
+
+      <li class="category-cloth children unisex spring">
+        <a href="#">Kids Spring Jumper</a>
+        -
+        <button
+          class="info-btn"
+          onclick="showDetails_cloth('Kids Spring Jumper', 'Children', 'Unisex', 'Spring', 'Cotton', 12)"
+        >
+          Info
+        </button>
+      </li>
+
+      <li class="category-school books">
+        <a href="#">To Kill a Mockingbird</a>
+        <button
+          class="info-btn"
+          onclick="showDetails_school_books('To Kill a Mockingbird ', 'Books', ' Harper Lee', 'English', '1st Edition, 1960'
+          ,'In 1930s Alabama, Scout Finch watches as her father defends a black man falsely accused of a crime,exploring themes of injustice and the loss of innocence.', 30,'book1.jpg')"
+        >
+          Info
+        </button>
+      </li>
+      <li class="category-school stationary">
+        <a href="#">Geometry Sets</a>
+        <button
+          class="info-btn"
+          onclick="showDetails_school_stationary('Geometry Sets', 'Stationary',  'Plastic/Metal', 40)"
+        > 
+          Info
+        </button>
+      </li>
+      <li class="category-Blood Donations " id="myUL" >
+        <a href="#">Blood Donation Requests</a>
+        -
+        <button 
+          class="info-btn"
+          onclick="showDetails_BloodDonation('Youssef Tarek', 'AB+', 'Royal Hospital', '142 main st , Cairo')"
+        >
+          Info
+        </button>
+      </li>
+      <li class="category-food"><a href="#">Food</a></li>
+      <li class="category-toys"><a href="#">Toys</a></li>
+<!-- testttttttttttttttttttttttttttttt -->
+
+
+
+
+<div id="additionalFiltersBloodDonation" style="display: none">
+  <div>
+    <label for="HospitalFilter">Hospital:</label>
+    <select id="HospitalFilter" onchange="applyFilters_BloodDonation()">
+      <option value="">Select Hospital...</option>
+      <option value="EL NAS Hospital">EL NAS Hospital</option>
+      <option value="ROYAL Hopsital">ROYAL Hopsital</option>
+      <option value="Cleaopatra Hopsital">Cleaopatra Hopsital</option>
+    </select>
+  </div>
+  <div>
+    <label for="areaFilter">Area:</label>
+    <select id="areaFilter" onchange="applyFilters_BloodDonation()">
+      <option value="">Select Area...</option>
+      <option value="m">New Cairo</option>
+      <option value="f">Giza</option>
+      <option value="unisex">Agamy</option>
+    </select>
+  </div>
+  <div>
+    <label for="GovernorateFilter">Governorate:</label>
+    <select id="GovernorateFilter" onchange="applyFilters_BloodDonation()">
+      <option value="">Select Governorate...</option>
+      <option value="winter">Cairo</option>
+      <option value="summer">Alexendria</option>
+    </select>
+  </div>
+    </ul>
+
+    <!-- The Modal -->
+    <!-- The Modal -->
+    <div id="infoModal" class="don-modal">
+      <div class="don-modal-content">
+        <span class="close">&times;</span>
+        <p id="modalText">Item details will appear here...</p>
+        <div>
+          <label for="donationQuantity">Quantity to Donate:</label>
+          <input
+            type="number"
+            id="donationQuantity"
+            name="donationQuantity"
+            min="1"
+            max="100"
+            value="1"
+          />
+        </div>
+        <div>
+          <label for="transportType">Choose Transportation:</label>
+          <select id="transportType">
+            <option value="truck">Truck</option>
+            <option value="car">Car</option>
+            <option value="motorcycle">Motorcycle</option>
+          </select>
+        </div>
+        <div>
+          <label for="timeSlot">Choose Time Slot:</label>
+          <select id="timeSlot">
+            <option value="8-10am">8-10 AM</option>
+            <option value="10-12am">10-12 AM</option>
+            <option value="2-4pm">2-4 PM</option>
+            <option value="4-6pm">4-6 PM</option>
+          </select>
+        </div>
+        <button onclick="confirmDonationAndShowETA()">Confirm Donation</button>
+        <!-- Place to show ETA -->
+        <div id="etaSection" style="display: none; margin-top: 20px">
+          <strong>Estimated Time of Arrival:</strong> <span id="etaTime"></span>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- testttttttttttttttttttttttttttttt -->
+
+    <div id="infoModaljoe" class="don-modal">
+      <div class="don-modal-content">
+        <span class="close">&times;</span>
+        <p id="modalTextjoe">Blood Donation Requests will appear here...</p>
+
+    <div id="bloodDonationRequests">
+      <h2>Blood Donation Requests</h2>
+    
+      <div id="filterOptions">
+        <label for="hospitalFilter">Hospital:</label>
+        <select id="hospitalFilter">
+          <option value="All Hospitals">All Hospitals  </option>
+          <option value="EL Nas Hospital">EL Nas Hospital</option>
+          <option value="Royal Hospital">Royal Hospital</option>
+          <option value="Cleaopatra Hospital">Cleaopatra Hospital</option>
+          </select>
+    
+        <label for="governorateFilter">Governorate:</label>
+        <select id="governorateFilter">
+          <option value="">All Governorates</option>
+          <option value="">Cairo</option>
+          <option value="">Alexendria</option>
+
+
+          </select>
+    
+        <label for="areaFilter">Area:</label>
+        <select id="areaFilter">
+          <option value="">All Areas</option>
+          <option value="">Giza</option>
+          <option value="">Cairo</option>
+          <option value="">Agamy</option>
+
+
+
+          </select>
+          <div class = "div1 elnas">
+
+              <h2 class="joe"> El Nas Hospital</h2>
+              <button id="showDetailsButtonforblood"   class="joe">Show Details</button>
+              <div id="details"  class="joe" style="display: none;">
+                
+                <p>Name: Youssef Tarek</p> 
+
+              <p>Blood Type: AB+</p> 
+
+              <p>Hospital Name: El Nas</p>  
+
+                <p>Hospital Area: Giza</p>
+
+                <p>Hospital Governerate: Cairo</p>
+
+              <p>Hospital Address: 142 main st , Cairo</p>  
+
+              <p>Location:</p> .</div>
+          </div>
+          <script>
+            const detailsButton = document.getElementById("showDetailsButtonforblood");
+            const detailsText = document.getElementById("details");
+          
+            detailsButton.addEventListener("click", function() {
+              if (detailsText.style.display === "none") {
+                detailsText.style.display = "block";
+              } else {
+                detailsText.style.display = "none";
+              }
+            });
+          </script>
+        <!-- <joeee2 -->
+          <div class="div1 royal">
+              <h2  class="joe2"> Royal Hospital</h2>
+              <button id="showDetailsButtonforblood2" class="joe2">Show Details</button>
+              <div id="details2"  class="joe2"  style="display: none;">
+                
+                <p>Name: Youssef Tarek</p> 
+
+                <p>Blood Type: AB+</p> 
+    
+                <p>Hospital Name: El Nas</p>  
+    
+                <p>Hospital Area: Giza</p>
+    
+                <p>Hospital Governerate: Cairo</p>
+    
+                <p>Hospital Address: 142 main st , Cairo</p>  
+    
+                <p>Location:</p> .</div>
+          </div>
+          <script>
+            const detailsButton2 = document.getElementById("showDetailsButtonforblood2");
+            const detailsText2 = document.getElementById("details2");
+          
+            detailsButton2.addEventListener("click", function() {
+              if (detailsText2.style.display === "none") {
+                detailsText2.style.display = "block";
+              } else {
+                detailsText2.style.display = "none";
+              }
+            });
+          </script>
+        
+    <!-- <joee3 -->
+
+      <h2 class="joe3"> Cleaopatra Hospital</h2>
+      <button id="showDetailsButtonforblood3" class="joe3">Show Details</button>
+      <div id="details3"  class="joe3"  style="display: none;">
+        <p>Name: Youssef Tarek</p> 
+
+        <p>Blood Type: AB+</p> 
+
+        <p>Hospital Name: El Nas</p>  
+
+         <p>Hospital Area: Giza</p>
+
+         <p>Hospital Governerate: Cairo</p>
+
+        <p>Hospital Address: 142 main st , Cairo</p>  
+
+        <p>Location:</p> .</div>
+      
+      <script>
+        const detailsButton3= document.getElementById("showDetailsButtonforblood3");
+        const detailsText3 = document.getElementById("details3");
+      
+        detailsButton3.addEventListener("click", function() {
+          if (detailsText3.style.display === "none") {
+            detailsText3.style.display = "block";
+          } else {
+            detailsText3.style.display = "none";
+          }
+        });
+      </script>
+      
+        <button onclick="applyFilters_BloodDonation()">Filter Blood Requests</button>
+      </div>
+    
+      <ul id="requestList"></ul>
+    </div>
+    
+
+    <!-- External Driver Arrival Notification -->
+    <div
+      id="driverArrivalNotification"
+      style="
+        display: none;
+        position: fixed;
+        right: 20px;
+        bottom: 20px;
+        background-color: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+        border-radius: 5px;
+        padding: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      "
+    >
+      <strong>Alert!</strong> Your driver has arrived. Please retrieve your
+      items.
+      <button onclick="closeDriverNotification()" style="margin-left: 10px">
+        Close
+      </button>
+    </div>
+  </body>
+
+  <script src="js/don.js"></script>
+</html>
