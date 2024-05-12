@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mooo</title>
+    <link rel="stylesheet" type="text/css" href="css/1.css" />
+    <link rel="stylesheet" href="css/animate.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+
+  <body>
+    <nav
+      class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light scrolled awake"
+      id="ftco-navbar"
+    >
+      <div class="container">
+        <a class="navbar-brand" href="index.html">Mooo</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#ftco-nav"
+          aria-controls="ftco-nav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="oi oi-menu"></span> Menu
+        </button>
+
+        <div class="collapse navbar-collapse" id="ftco-nav">
+          <ul class="navbar-nav ml-auto">
+            <div class="navbar-nav ml-auto koooo" >
+              <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
+              <li class="nav-item"><a href="Donate copy.html" class="nav-link">Donate</a></li>
+              <li class="nav-item"><a href="organization.html" class="nav-link">Organization</a></li>
+              <li class="nav-item"><a href="contacts.html" class="nav-link">Contact</a></li>
+              </div>
+            <li class="nav-item cta cta-colored">
+              <a href="login.html" class="btn">Login</a>
+            </li>
+            <li class="nav-item cta1 cta-colored">
+              <a href="signup.html" class="btn">Sign up</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <br />
+    <br />
+    <br />
+
+    <h2>Donation requests</h2>
+
+    <input
+      type="text"
+      id="myInput"
+      onkeyup="filterCategory()"
+      placeholder="Search for category names.."
+    />
+
+    <div id="myBtnContainer">
+      <button class="btn active" onclick="filterCategory('all')">
+        Show all
+      </button>
+      <button class="btn" onclick="filterCategory('toys')">Toys</button>
+      <button class="btn" onclick="filterCategory('cloth')">Cloth</button>
+      <button class="btn" onclick="filterCategory('food')">Food</button>
+      <!-- <button class="btn" onclick="filterCategory('medical')">
+        Medical Supplies
+      </button> -->
+      <button class="btn" onclick="filterCategory('school')">
+        School Supplies
+      </button>
+      <button class="btn" onclick="filterCategory('blood')">
+        Blood Donations
+      </button>
+      <!-- Link styled as a button -->
+      <a href="medical_cases.html" class="btn"> Medical Medical Supplies </a>
+      <a href="medical_supp.html" class="btn"> Medical su </a>
+      <a href="medical_supp.html" class="btn"> Medical cases </a>
+      <a href="teachingpost.html" class="btn"> Teaching post </a>
+    </div>
+
+    <div id="additionalFiltersCloth" style="display: none">
+      <div>
+        <label for="ageFilter">Age:</label>
+        <select id="ageFilter" onchange="applyFilters_Cloth()">
+          <option value="">Select Age...</option>
+          <option value="children">Children</option>
+          <option value="adult">Adult</option>
+        </select>
+      </div>
+      <div>
+        <label for="genderFilter">Gender:</label>
+        <select id="genderFilter" onchange="applyFilters_Cloth()">
+          <option value="">Select Gender...</option>
+          <option value="m">Male</option>
+          <option value="f">Female</option>
+          <option value="unisex">Unisex</option>
+        </select>
+      </div>
+      <div>
+        <label for="seasonFilter">Season:</label>
+        <select id="seasonFilter" onchange="applyFilters_Cloth()">
+          <option value="">Select Season...</option>
+          <option value="winter">Winter</option>
+          <option value="summer">Summer</option>
+          <option value="spring">Spring</option>
+          <option value="autumn">Autumn</option>
+        </select>
+      </div>
+    </div>
+
+    <div id="additionalFiltersSchool" style="display: none">
+      <select id="schoolFilter" onchange="applyFilters_School()">
+        <option value="">Select Type...</option>
+        <option value="books">Books</option>
+        <option value="stationary">Stationary</option>
+      </select>
+    </div>
+    <!-- blodd donations extra filters -->
+    <div id="additionalFiltersFood" style="display: none">
+      <select id="typeFilter-food" onchange="applyFiltersFood()">
+        <option value="">Select Type...</option>
+        <option value="fruits-vegetables">Fruits & Vegetables</option>
+        <option value="canned-foods">Canned Foods</option>
+        <option value="fresh-meals">Fresh Meals</option>
+        <option value="baked-goods">Baked Goods</option>
+      </select>
+    </div>
+
+    <div id="additionalFiltersBloodDonation" style="display: none">
+      <!-- Filter by Governorate -->
+      <select id="governorateFilter" onchange="applyFilters_BloodDonation()">
+        <option value="">Select Governorate...</option>
+        <option value="cairo">Cairo</option>
+        <option value="alexandria">Alexandria</option>
+        <option value="giza">Giza</option>
+        <option value="luxor">Luxor</option>
+        <option value="aswan">Aswan</option>
+      </select>
+
+      <!-- Filter by Hospital Area -->
+      <select id="areaFilter" onchange="applyFilters_BloodDonation()">
+        <option value="">Select Area...</option>
+        <option value="nasrCity">Nasr City</option>
+        <option value="sidiGaber">Sidi Gaber</option>
+        <option value="eastBank">East Bank</option>
+        <option value="aswanCity">Aswan City</option>
+      </select>
+
+      <!-- Filter by Hospital -->
+      <select id="hospitalFilter" onchange="applyFilters_BloodDonation()">
+        <option value="">Select Hospital...</option>
+        <option value="cairoGeneral">Cairo General Hospital</option>
+        <option value="alexandriaMedical">Alexandria Medical Center</option>
+        <option value="luxorSpecialty">Luxor Specialty Hospital</option>
+        <option value="aswanCommunity">Aswan Community Hospital</option>
+      </select>
+    </div>
+
+    <div id="additionalFiltersToys" style="display: none">
+      <!-- Toy donation requests section -->
+      <div id="filterSectionToys">
+        <!-- Age, gender, and category filter dropdowns -->
+        <!-- Example Dropdown Setup -->
+        <select id="ageFilterToys" onchange="applyFiltersToys()">
+          <option value="">Select Age...</option>
+          <option value="3">Age 3+</option>
+          <option value="5">Age 5+</option>
+          <option value="7">Age 7+</option>
+        </select>
+
+        <select id="genderFilterToys" onchange="applyFiltersToys()">
+          <option value="">Select Gender...</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="unisex">Unisex</option>
+        </select>
+
+        <select id="categoryFilterToys" onchange="applyFiltersToys()">
+          <option value="">Select Category...</option>
+          <option value="board-games">Board Games</option>
+          <option value="stuffed-toys">Stuffed Toys</option>
+          <option value="dolls">Dolls</option>
+          <option value="cars">Cars</option>
+          <option value="outdoor">Outdoor</option>
+        </select>
+      </div>
+    </div>
+
+    <ul id="myUL">
+      <ul id="toyRequestsList">
+        <li class="category-toys board-games age-3 gender-unisex">
+          <a href="#">Board Game - Age 3+</a>
+          <button
+            class="info-btn"
+            onclick="showDetails_toy('Board Game - Age 3+', 'Board Games', '3+', 'Unisex', 'board_game_image.jpg', 5)"
+          >
+            Info
+          </button>
+        </li>
+        <li class="category-toys stuffed-toys age-5 gender-female">
+          <a href="#">Stuffed Toy - Age 5+</a>
+          <button
+            class="info-btn"
+            onclick="showDetails_toy('Stuffed Toy - Age 5+', 'Stuffed Toys', '5+', 'Female', 'stuffed_toy_image.jpg', 8)"
+          >
+            Info
+          </button>
+        </li>
+        <li class="category-toys dolls age-4 gender-male">
+          <a href="#">Action Figure - Age 4+</a>
+          <button
+            class="info-btn"
+            onclick="showDetails_toy('Action Figure - Age 4+', 'Dolls', '4+', 'Male', 'action_figure_image.jpg', 6)"
+          >
+            Info
+          </button>
+        </li>
+        <li class="category-toys cars age-5 gender-unisex">
+          <a href="#">Toy Cars - Age 5+</a>
+          <button
+            class="info-btn"
+            onclick="showDetails_toy('Toy Cars - Age 5+', 'Cars', '5+', 'Unisex', 'toy_cars_image.jpg', 10)"
+          >
+            Info
+          </button>
+        </li>
+        <li class="category-toys outdoor age-7 gender-unisex">
+          <a href="#">Outdoor Toys - Age 7+</a>
+          <button
+            class="info-btn"
+            onclick="showDetails_toy('Outdoor Toys - Age 7+', 'Outdoor', '7+', 'Unisex', 'outdoor_toys_image.jpg', 12)"
+          >
+            Info
+          </button>
+        </li>
+      </ul>
+      <li class="category-medical medical-devices">
+        <a
+          href="#"
+          data-details="For respiratory support"
+          data-image="respiratory_support_image.jpg"
+          >Ventilator</a
+        >
+        <button
+          class="info-btn"
+          data-quantity="2"
+          onclick="showDetails_medical('Ventilator', 'Medical Devices', 'For respiratory support', 'respiratory_support_image.jpg', 2)"
+        >
+          Info
+        </button>
+      </li>
+      <li class="category-medical medical-equipment">
+        <a
+          href="#"
+          data-details="For sterilization"
+          data-image="sterilization_machine_image.jpg"
+          >Autoclave</a
+        >
+        <button
+          class="info-btn"
+          data-quantity="1"
+          onclick="showDetails_medical('Autoclave', 'Medical Equipment', 'For sterilization', 'sterilization_machine_image.jpg', 1)"
+        >
+          Info
+        </button>
+      </li>
+      <li class="category-medical medication">
+        <a
+          href="#"
+          data-details="For pain management"
+          data-image="pain_management_tablets_image.jpg"
+          >Pain Management Tablets</a
+        >
+        <button
+          class="info-btn"
+          data-quantity="50"
+          onclick="showDetails_medical('Pain Management Tablets', 'Medication', 'For pain management', 'pain_management_tablets_image.jpg', 50)"
+        >
+          Info
+        </button>
+      </li>
+      <li class="category-medical medication">
+        <a
+          href="#"
+          data-details="For blood pressure regulation"
+          data-image="blood_pressure_medication_image.jpg"
+          >Blood Pressure Medication</a
+        >
+        <button
+          class="info-btn"
+          data-quantity="30"
+          onclick="showDetails_medical('Blood Pressure Medication', 'Medication', 'For blood pressure regulation', 'blood_pressure_medication_image.jpg', 30)"
+        >
+          Info
+        </button>
+      </li>
+      <li class="category-medical medical-devices">
+        <a
+          href="#"
+          data-details="For glucose monitoring"
+          data-image="glucose_monitor_image.jpg"
+          >Glucose Monitor</a
+        >
+        <button
+          class="info-btn"
+          data-quantity="5"
+          onclick="showDetails_medical('Glucose Monitor', 'Medical Devices', 'For glucose monitoring', 'glucose_monitor_image.jpg', 5)"
+        >
+          Info
+        </button>
+      </li>
+      <li class="category-food fruits-vegetables">
+        <a href="#">Apples - 10kg</a>
+        <button
+          class="info-btn"
+          onclick="showDetails_food('Apples', 'Fruits & Vegetables', '10kg', 'apple_image.jpg', 5)"
+        >
+          Info
+        </button>
+      </li>
+      <li class="category-food canned-foods">
+        <a href="#">Canned Soup - 20 cans</a>
+        <button
+          class="info-btn"
+          onclick="showDetails_food('Canned Soup', 'Canned Foods', '20 cans', 'soup_image.jpg', 8)"
+        >
+          Info
+        </button>
+      </li>
+      <li class="category-food fresh-meals">
+        <a href="#">Prepared Salad - 5 servings</a>
+        <button
+          class="info-btn"
+          onclick="showDetails_food('Prepared Salad', 'Fresh Meals', '5 servings', 'salad_image.jpg', 6)"
+        >
+          Info
+        </button>
+      </li>
+      <li class="category-food baked-goods">
+        <a href="#">Homemade Bread - 3 loaves</a>
+        <button
+          class="info-btn"
+          onclick="showDetails_food('Homemade Bread', 'Baked Goods', '3 loaves', 'bread_image.jpg', 4)"
+        >
+          Info
+        </button>
+      </li>
+      <li class="category-cloth children m winter">
+        <a href="#">Children's Winter Jacket</a>
+        -
+        <button
+          class="info-btn"
+          onclick="showDetails_cloth('Childrens Winter Jacket', 'Children', 'Male', 'Winter', 'Polyester', 10)"
+        >
+          Info
+        </button>
+      </li>
+      <li class="category-cloth adult f summer">
+        <a href="#">Women's Summer Dress</a>
+        -
+        <button
+          class="info-btn"
+          onclick="showDetails_cloth('Womens Summer Dress', 'Adult', 'Female', 'Summer', 'Cotton', 20)"
+        >
+          Info
+        </button>
+      </li>
+
+      <li class="category-cloth adult unisex autumn">
+        <a href="#">Unisex Autumn Scarf</a>
+        -
+        <button
+          class="info-btn"
+          onclick="showDetails_cloth('Unisex Autumn Scarf', 'Adult', 'Unisex', 'Autumn', 'Wool', 15)"
+        >
+          Info
+        </button>
+      </li>
+
+      <li class="category-cloth children unisex spring">
+        <a href="#">Kids Spring Jumper</a>
+        -
+        <button
+          class="info-btn"
+          onclick="showDetails_cloth('Kids Spring Jumper', 'Children', 'Unisex', 'Spring', 'Cotton', 12)"
+        >
+          Info
+        </button>
+      </li>
+
+      <li class="category-school books">
+        <a href="#">To Kill a Mockingbird</a>
+        <button
+          class="info-btn"
+          onclick="showDetails_school_books('To Kill a Mockingbird ', 'Books', ' Harper Lee', 'English', '1st Edition, 1960'
+          ,'In 1930s Alabama, Scout Finch watches as her father defends a black man falsely accused of a crime,exploring themes of injustice and the loss of innocence.', 30,'book1.jpg')"
+        >
+          Info
+        </button>
+      </li>
+      <li class="category-school stationary">
+        <a href="#">Geometry Sets</a>
+        <button
+          class="info-btn"
+          onclick="showDetails_school_stationary('Geometry Sets', 'Stationary',  'Plastic/Metal', 40)"
+        >
+          Info
+        </button>
+      </li>
+      <li class="category-food"><a href="#">Food</a></li>
+      <li class="category-toys"><a href="#">Toys</a></li>
+
+      <li class="category-blood-donation cairo nasrCity cairoGeneral">
+        <a href="#">Patient: Mohamed Salah</a>
+        <button
+          class="info-btn"
+          onclick="showDetails_blood_donation('Mohamed Salah', 'A+', 'Cairo General Hospital', 'Nasr City', 'Cairo', '123 Health St.')"
+        >
+          Info
+        </button>
+      </li>
+
+      <li
+        class="category-blood-donation alexandria sidiGaber alexandriaMedical"
+      >
+        <a href="#">Patient: Fatima Hassan</a>
+        <button
+          class="info-btn"
+          onclick="showDetails_blood_donation('Fatima Hassan', 'O-', 'Alexandria Medical Center', 'Sidi Gaber', 'Alexandria', '456 Care Ave.')"
+        >
+          Info
+        </button>
+      </li>
+      <li class="category-blood-donation luxor eastBank luxorSpecialty">
+        <a href="#">Patient: Amr Youssef</a>
+        <button
+          class="info-btn"
+          onclick="showDetails_blood_donation('Amr Youssef', 'AB+', 'Luxor Specialty Hospital', 'East Bank', 'Luxor', '789 Life Rd.')"
+        >
+          Info
+        </button>
+      </li>
+
+      <li class="category-blood-donation giza midtown gizaGeneral">
+        <a href="#">Patient: Sara Ibrahim</a>
+        <button
+          class="info-btn"
+          onclick="showDetails_blood_donation('Sara Ibrahim', 'O+', 'Giza General Hospital', 'Midtown', 'Giza', '321 Health Blvd.')"
+        >
+          Info
+        </button>
+      </li>
+
+      <li class="category-blood-donation aswan aswanCity aswanCommunity">
+        <a href="#">Patient: Ahmed Mohamed</a>
+        <button
+          class="info-btn"
+          onclick="showDetails_blood_donation('Ahmed Mohamed', 'A-', 'Aswan Community Hospital', 'Aswan City', 'Aswan', '987 Wellness St.')"
+        >
+          Info
+        </button>
+      </li>
+    </ul>
+
+    <!-- The Modal -->
+    <!-- The Modal -->
+    <div id="infoModal" class="don-modal">
+      <div class="don-modal-content">
+        <span class="close" style="display: none">&times;</span>
+        <span class="close" onclick="closeModal()">&times;</span>
+        <p id="modalText">Item details will appear here...</p>
+        <div>
+          <label for="donationQuantity">Quantity to Donate:</label>
+          <input
+            type="number"
+            id="donationQuantity"
+            name="donationQuantity"
+            min="1"
+            max="100"
+            value="1"
+          />
+        </div>
+        <div>
+          <label for="transportType">Choose Transportation:</label>
+          <select id="transportType">
+            <option value="truck">Truck</option>
+            <option value="car">Car</option>
+            <option value="motorcycle">Motorcycle</option>
+          </select>
+        </div>
+        <div>
+          <label for="timeSlot">Choose Time Slot:</label>
+          <select id="timeSlot">
+            <option value="8-10am">8-10 AM</option>
+            <option value="10-12am">10-12 AM</option>
+            <option value="2-4pm">2-4 PM</option>
+            <option value="4-6pm">4-6 PM</option>
+          </select>
+        </div>
+        <button onclick="confirmDonationAndShowETA()">Confirm Donation</button>
+        <!-- Place to show ETA -->
+        <div id="etaSection" style="display: none; margin-top: 20px">
+          <strong>Estimated Time of Arrival:</strong> <span id="etaTime"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Map Modal -->
+    <div id="mapModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeMapModal()">&times;</span>
+        <h2>Map Location</h2>
+        <div id="map" style="height: 300px"></div>
+      </div>
+    </div>
+
+    <!-- External Driver Arrival Notification -->
+    <div
+      id="driverArrivalNotification"
+      style="
+        display: none;
+        position: fixed;
+        right: 20px;
+        bottom: 20px;
+        background-color: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+        border-radius: 5px;
+        padding: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      "
+    >
+      <strong>Alert!</strong> Your driver has arrived. Please retrieve your
+      items.
+      <button onclick="closeDriverNotification()" style="margin-left: 10px">
+        Close
+      </button>
+    </div>
+  </body>
+
+  <script src="js/don.js"></script>
+</html>
