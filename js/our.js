@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <li class="nav-item"><a href="organization.html" class="nav-link">Organization</a></li>
                 <li class="nav-item"><a href="contacts.html" class="nav-link">Contact</a></li>
                 </div>
-                    <li class="nav-item"><a href="organizationPage.html" class="nav-link">Welcome, ${username}</a></li>
+                    <li class="nav-item"><a href="organization.html" class="nav-link">Welcome, ${username}</a></li>
                     <li class="nav-item"><a href="#" class="nav-link" onclick="logout()">Logout</a></li>
                 </ul>
             `;

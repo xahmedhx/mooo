@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mooo</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light scrolled awake" id="ftco-navbar">
+        <div class="container">
+          <a class="navbar-brand" href="index.html">Mooo</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="oi oi-menu"></span> Menu
+          </button>
+          <div class="collapse navbar-collapse" id="ftco-nav">
+            <ul class="navbar-nav ml-auto">
+              <div class="navbar-nav ml-auto koooo" >
+              <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
+              <li class="nav-item"><a href="contacts.html" class="nav-link">Contact</a></li>
+              </div>
+              <li class="nav-item cta cta-colored"><a href="index.html" class="btn">logout</a></li>
+              
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <div class="form-container">
+        <h2>Manage Donation Posts</h2>
+        <ul id="donationPostsList"></ul>
+    </div>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-container {
+           
+            padding: 20px;
+            border-radius: 8px;
+            
+            width: 500px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            background: #eee;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        button {
+            margin-left: 10px;
+            background-color: #f86f2d;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #f86f2d;
+        }
+
+    </style>
+
+    </body>
+    <script>
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Simulated list of donation posts
+    const donationPosts = [
+        { id: 1, category: 'Clothes', details: 'Children winter jackets' },
+        { id: 2, category: 'Food', details: 'Canned beans and vegetables' },
+        { id: 3, category: 'Toys', details: 'Puzzle games for ages 5-7' }
+    ];
+
+    const list = document.getElementById('donationPostsList');
+    donationPosts.forEach(post => {
+        const li = document.createElement('li');
+        li.id = `post-${post.id}`; // Set an ID for each list item for easier DOM manipulation
+        li.innerHTML = getListItemHTML(post);
+        list.appendChild(li);
+    });
+});
+
+function getListItemHTML(post) {
+    return `
+        <span id="details-${post.id}"><strong>${post.category}</strong>: ${post.details}</span>
+        <button onclick="editPost(${post.id})">Edit</button>
+        <button onclick="deletePost(${post.id}, 'post-${post.id}')">Delete</button>
+    `;
+}
+
+function editPost(id) {
+    const detailsSpan = document.getElementById(`details-${id}`);
+    const currentDetails = detailsSpan.innerText;
+    const newDetails = prompt('Enter new details for the donation post:', currentDetails);
+    if (newDetails && newDetails !== currentDetails) {
+        detailsSpan.innerHTML = `<strong>${detailsSpan.querySelector('strong').textContent}</strong>: ${newDetails}`;
+        console.log(`Updated post ${id} with new details: ${newDetails}`);
+        alert('Donation post updated successfully!');
+    }
+}
+
+function deletePost(id, liId) {
+    if (confirm('Are you sure you want to delete this post?')) {
+        console.log(`Deleted post ${id}`);
+        const element = document.getElementById(liId);
+        if (element) {
+            element.parentNode.removeChild(element); // Remove the element from the DOM
+        }
+        alert('Donation post deleted successfully!');
+    }
+}
+
+
+    </script>
+</html>
