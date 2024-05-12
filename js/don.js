@@ -26,9 +26,8 @@ function filterCategory(category = "all") {
   medicalDonationSection.style.display = category === "medical" ? "block" : "none"; 
 }
 
-function applyFiltersToys() {
-  // Implement toy filtering logic here
-}
+
+
 
 function showToyDetailsModal() {
   // Implement logic to show toy details modal
@@ -46,16 +45,14 @@ document.querySelector("#myBtnContainer button:nth-child(2)").addEventListener("
 });
 
 // Function to populate the list of food donation requests
-function populateFoodRequests() {
-  // Use AJAX or fetch to retrieve food donation data from the server
-  // Loop through the data and dynamically create HTML elements to represent each food item
-  // Append these elements to the foodRequestsList ul element
-}
+
+
 
 // Function to filter food donation requests by category
 // Function to filter food donation requests by category
+// Function to filter food requests based on category
 function filterFoodRequests(category) {
-  const foodItems = document.querySelectorAll('.food-item');
+  const foodItems = document.querySelectorAll('.category-food');
   
   // Loop through all food items
   foodItems.forEach(item => {
@@ -70,19 +67,19 @@ function filterFoodRequests(category) {
   });
 }
 
-
 // Function to display details of a selected food item
-function showFoodDetails(itemName, quantityRequired) {
-  // Populate the foodDetailsModal with details of the selected food item
-  // Include item name and quantity required
-}
+
 
 // Event listener to trigger the display of food details when a food item is clicked
 document.addEventListener('click', function(event) {
-  if (event.target.classList.contains('food-item')) {
-    const itemName = event.target.textContent.trim();
-    const quantityRequired = event.target.getAttribute('data-quantity');
-    showFoodDetails(itemName, quantityRequired);
+  if (event.target.classList.contains('info-btn')) {
+    const listItem = event.target.closest('.category-food');
+    const itemName = listItem.querySelector('a').textContent.trim();
+    const category = listItem.classList[1]; // Assumes that the category is the second class
+    const quantity = itemName.match(/\d+/)[0]; // Extracts the quantity from the item name
+    const imageURL = listItem.querySelector('a').getAttribute('data-image');
+    const price = parseInt(event.target.getAttribute('data-price')); // Assuming data-price attribute contains the price
+    showFoodDetails(itemName, category, quantity, imageURL, price);
   }
 });
 
@@ -136,25 +133,29 @@ function showFoodDetails(itemName, quantityRequired) {
 
 
 
-function applyFilters_Cloth() {
-  var age = document.getElementById("ageFilter").value;
-  var gender = document.getElementById("genderFilter").value;
-  var season = document.getElementById("seasonFilter").value;
-  var li = document.getElementById("myUL").getElementsByTagName("li");
+function applyFiltersToys() {
+  var age = document.getElementById("ageFilterToys").value;
+  var gender = document.getElementById("genderFilterToys").value;
+  var category = document.getElementById("categoryFilterToys").value;
+  var toyList = document.getElementById("toyRequestsList").getElementsByTagName("li");
 
-  for (var i = 0; i < li.length; i++) {
-    var classes = li[i].className.split(" ");
-    var hasAge = age === "" || classes.includes(age);
-    var hasGender = gender === "" || classes.includes(gender);
-    var hasSeason = season === "" || classes.includes(season);
+  for (var i = 0; i < toyList.length; i++) {
+    var classes = toyList[i].className.split(" ");
+    var ageClass = age === "children" ? "age-children" : "age-adult";
+    var hasAge = age === "" || classes.includes(ageClass);
+    var hasGender = gender === "" || classes.includes("gender-" + gender);
+    var hasCategory = category === "" || classes.includes(category);
 
-    if (hasAge && hasGender && hasSeason && li[i].className.includes("category-cloth")) {
-      li[i].style.display = "";
+    if (hasAge && hasGender && hasCategory) {
+      toyList[i].style.display = "";
     } else {
-      li[i].style.display = "none";
+      toyList[i].style.display = "none";
     }
   }
 }
+
+
+
 
 function applyFilters_School() {
   var type = document.getElementById("schoolFilter").value;
@@ -287,50 +288,73 @@ window.onclick = function (event) {
 
 // Sample data for medical supply requests (replace with your actual data)
 // Function to populate the list of medical supply donation requests
-function populateMedicalRequests() {
-  // Use AJAX or fetch to retrieve medical donation data from the server
-  // Loop through the data and dynamically create HTML elements to represent each medical item
-  // Append these elements to the medicalRequestsList ul element
-}
-
-// Function to filter medical supply donation requests by type and category
-function filterMedicalRequests(type, category) {
-  const medicalItems = document.querySelectorAll('.medical-item');
+// Function to filter medical supply requests based on type and category
+function filterMedicalRequests() {
+  const type = document.getElementById("typeFilterMedical").value;
+  const category = document.getElementById("categoryFilterMedical").value;
+  const medicalItems = document.querySelectorAll('.category-medical');
   
-  // Loop through all medical items
+  // Loop through all medical supply items
   medicalItems.forEach(item => {
-    // Check if the medical item belongs to the selected type and category
-    if (item.classList.contains(type) && item.classList.contains(category)) {
-      // Show the medical item
+    const itemType = item.classList.contains('medical-devices') ? 'equipment' :
+                     item.classList.contains('medication') ? 'medication' :
+                     item.classList.contains('medical-equipment') ? 'equipment' : 'consumables'; // Assuming consumables as default
+    const itemCategory = item.classList[1]; // Assuming category is the second class
+  
+    // Check if the medical supply item matches the selected type and category
+    const typeMatch = type === '' || itemType === type;
+    const categoryMatch = category === '' || itemCategory === category;
+  
+    // Show the medical supply item if it matches the selected type and category
+    if (typeMatch && categoryMatch) {
       item.style.display = 'block';
     } else {
-      // Hide the medical item if it doesn't belong to the selected type or category
       item.style.display = 'none';
     }
   });
 }
 
-// Function to display details of a selected medical supply
-function showMedicalDetails(name, details, imageSrc, quantity) {
-  // Populate the medicalDetailsModal with details of the selected medical supply
+// Function to display details of a selected medical supply item
+function showDetails_medical(itemName, category, details, imageURL, quantity) {
+  const modal = document.getElementById("medicalDetailsModal");
+  const itemNameElement = modal.querySelector("#medicalItemName");
+  const itemDetailsElement = modal.querySelector("#medicalItemDetails");
+  const itemImageElement = modal.querySelector("#medicalItemImage");
+  const itemQuantityElement = modal.querySelector("#medicalItemQuantity");
+
+  itemNameElement.textContent = itemName;
+  itemDetailsElement.textContent = details;
+  itemImageElement.src = imageURL;
+  itemQuantityElement.textContent = `Quantity: ${quantity}`;
+  modal.style.display = "block";
 }
 
-// Function to handle donation confirmation for medical supplies
-function confirmMedicalDonation() {
-  // Get the selected quantity
-  const quantity = document.getElementById('donationQuantity').value;
-  
-  // Perform any additional actions, such as sending the donation information to the server
-  
-  // Close the modal
-  closeMedicalDetailsModal();
-}
-
-// Function to close the medical supply details modal
+// Close the medical supply details modal
 function closeMedicalDetailsModal() {
-  const modal = document.getElementById('medicalDetailsModal');
-  modal.style.display = 'none';
+  const modal = document.getElementById("medicalDetailsModal");
+  modal.style.display = "none";
 }
+
+// Event listener for applying filters when the filter dropdowns change
+document.getElementById("typeFilterMedical").addEventListener("change", filterMedicalRequests);
+document.getElementById("categoryFilterMedical").addEventListener("change", filterMedicalRequests);
+
+// Event listener to trigger the display of medical supply details when a 'Info' button is clicked
+document.addEventListener('click', function(event) {
+  if (event.target.classList.contains('info-btn')) {
+    const listItem = event.target.closest('.category-medical');
+    const itemName = listItem.querySelector('a').textContent.trim();
+    const category = listItem.classList[1]; // Assuming category is the second class
+    const details = listItem.querySelector('a').getAttribute('data-details');
+    const imageURL = listItem.querySelector('a').getAttribute('data-image');
+    const quantity = parseInt(event.target.getAttribute('data-quantity')); // Assuming data-quantity attribute contains the quantity
+    showDetails_medical(itemName, category, details, imageURL, quantity);
+  }
+});
+
+// Close the medical supply details modal when the close button is clicked
+document.querySelector(".close").addEventListener("click", closeMedicalDetailsModal);
+
 
 // Event listener to trigger the display of medical supply details when a medical item is clicked
 document.addEventListener('click', function(event) {
@@ -344,14 +368,51 @@ document.addEventListener('click', function(event) {
 });
 
 // Initial population of medical supply requests list
-populateMedicalRequests();
+
 
 document.querySelector("#myBtnContainer button:nth-child(5)").addEventListener("click", function() {
   filterCategory('medical');
 });
+// Function to show toy details modal
+function showDetails_toy(name, category, age, gender, imageURL, quantity) {
+  // Populate the modal with toy details
+  const modal = document.getElementById("toyDetailsModal");
+  modal.innerHTML = `
+    <div class="modal-content">
+      <span class="close" onclick="closeToyDetailsModal()">&times;</span>
+      <h2>${name}</h2>
+      <p><strong>Category:</strong> ${category}</p>
+      <p><strong>Age:</strong> ${age}</p>
+      <p><strong>Gender:</strong> ${gender}</p>
+      <img src="${imageURL}" alt="${name}" class="toy-image">
+      <p><strong>Quantity Available:</strong> ${quantity}</p>
+      <!-- Add more details here as needed -->
+    </div>
+  `;
+  modal.style.display = "block";
+}
+
+// Function to close toy details modal
+function closeToyDetailsModal() {
+  const modal = document.getElementById("toyDetailsModal");
+  modal.style.display = "none";
+}
+
 
 //////////////////////////////////
 /////////////////
+// Event listener to trigger filtering when filter dropdowns change
+document.getElementById("toyAgeFilter").addEventListener("change", applyFiltersToys);
+document.getElementById("toyGenderFilter").addEventListener("change", applyFiltersToys);
+document.getElementById("toyCategoryFilter").addEventListener("change", applyFiltersToys);
+
+// Event listener to trigger display of toy details when 'Info' button is clicked
+document.querySelectorAll('.info-btn').forEach(function(button) {
+  button.addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent default behavior of the button
+    showToyDetailsModal(); // Call function to show toy details modal
+  });
+});
 
 
 
