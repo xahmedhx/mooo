@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Medical Supplies Donation Requests</title>
+  </head>
+  <body>
+    <div id="medicalDonationSection">
+      <!-- Filter Section for Medical Supplies Donation Requests -->
+      <div id="filterSectionMedical">
+        <!-- Type filter dropdown -->
+        <div>
+          <label for="typeFilterMedical">Type:</label>
+          <select id="typeFilterMedical">
+            <option value="">Select Type...</option>
+            <option value="medical-devices">Medical Devices</option>
+            <option value="medical-equipment">Medical Equipment</option>
+            <option value="medication">Medication</option>
+          </select>
+        </div>
+        <!-- Apply Filters button -->
+        <button id="filterButton">Filter</button>
+      </div>
+
+      <ul id="medicalRequestsList">
+        <!-- Medical supplies donation requests list -->
+        <li class="category-medical medical-devices">
+          <a
+            href="#"
+            data-details="For respiratory support"
+            data-image="respiratory_support_image.jpg"
+            >Ventilator</a
+          >
+          <button
+            class="info-btn"
+            data-quantity="2"
+            onclick="showDetails_medical('Ventilator', 'Medical Devices', 'For respiratory support', 'respiratory_support_image.jpg', 2)"
+          >
+            Info
+          </button>
+        </li>
+        <li class="category-medical medical-equipment">
+          <a
+            href="#"
+            data-details="For sterilization"
+            data-image="sterilization_machine_image.jpg"
+            >Autoclave</a
+          >
+          <button
+            class="info-btn"
+            data-quantity="1"
+            onclick="showDetails_medical('Autoclave', 'Medical Equipment', 'For sterilization', 'sterilization_machine_image.jpg', 1)"
+          >
+            Info
+          </button>
+        </li>
+        <li class="category-medical medication">
+          <a
+            href="#"
+            data-details="For pain management"
+            data-image="pain_management_tablets_image.jpg"
+            >Pain Management Tablets</a
+          >
+          <button
+            class="info-btn"
+            data-quantity="50"
+            onclick="showDetails_medical('Pain Management Tablets', 'Medication', 'For pain management', 'pain_management_tablets_image.jpg', 50)"
+          >
+            Info
+          </button>
+        </li>
+        <li class="category-medical medication">
+          <a
+            href="#"
+            data-details="For blood pressure regulation"
+            data-image="blood_pressure_medication_image.jpg"
+            >Blood Pressure Medication</a
+          >
+          <button
+            class="info-btn"
+            data-quantity="30"
+            onclick="showDetails_medical('Blood Pressure Medication', 'Medication', 'For blood pressure regulation', 'blood_pressure_medication_image.jpg', 30)"
+          >
+            Info
+          </button>
+        </li>
+        <li class="category-medical medical-devices">
+          <a
+            href="#"
+            data-details="For glucose monitoring"
+            data-image="glucose_monitor_image.jpg"
+            >Glucose Monitor</a
+          >
+          <button
+            class="info-btn"
+            data-quantity="5"
+            onclick="showDetails_medical('Glucose Monitor', 'Medical Devices', 'For glucose monitoring', 'glucose_monitor_image.jpg', 5)"
+          >
+            Info
+          </button>
+        </li>
+      </ul>
+    </div>
+
+    <!-- The Modal for Viewing Medical Supply Details -->
+    <div id="medicalDetailsModal" style="display: none">
+      <h2>Medical Supply Details</h2>
+      <p id="medicalItemName"></p>
+      <p id="medicalItemDetails"></p>
+      <img id="medicalItemImage" src="" alt="Medical Supply Image" />
+      <p id="medicalItemQuantity"></p>
+    </div>
+
+    <script>
+      function showDetails_medical(name, category, details, image, quantity) {
+        const modal = document.getElementById("medicalDetailsModal");
+        const itemName = document.getElementById("medicalItemName");
+        const itemDetails = document.getElementById("medicalItemDetails");
+        const itemImage = document.getElementById("medicalItemImage");
+        const itemQuantity = document.getElementById("medicalItemQuantity");
+
+        itemName.textContent = name;
+        itemDetails.textContent = details;
+        itemImage.src = image;
+        itemQuantity.textContent = "Quantity: " + quantity;
+
+        modal.style.display = "block";
+      }
+
+      // Function to filter medical supplies donation requests
+      function filterMedicalSupplies(category = "all") {
+        const type = document.getElementById("typeFilterMedical").value;
+        const medicalSupplies = document.querySelectorAll(".category-medical");
+
+        medicalSupplies.forEach((supply) => {
+          const supplyCategory = supply.classList.contains(category);
+
+          if (type === "" || supplyCategory) {
+            supply.style.display = "block";
+          } else {
+            supply.style.display = "none";
+          }
+        });
+      }
+
+      // Event listener for filtering medical supplies donation requests
+      document
+        .getElementById("filterButton")
+        .addEventListener("click", function () {
+          const type = document.getElementById("typeFilterMedical").value;
+          filterMedicalSupplies(type);
+        });
+
+      // Call a function to populate medical supplies when the page loads
+      window.onload = function () {
+        // Call a function to populate medical supplies (if needed)
+      };
+    </script>
+  </body>
+</html>

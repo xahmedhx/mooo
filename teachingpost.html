@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Teaching Posts</title>
+  </head>
+  <body>
+    <div id="teachingPostsSection">
+      <!-- Filter Section for Teaching Posts -->
+      <div id="filterSectionTeaching">
+        <!-- Subject, area, and governorate filter dropdowns -->
+        <div>
+          <label for="subjectFilterTeaching">Subject:</label>
+          <select id="subjectFilterTeaching">
+            <option value="">Select Subject...</option>
+            <option value="math">Math</option>
+            <option value="science">Science</option>
+            <option value="english">English</option>
+            <option value="history">History</option>
+            <!-- Add more subjects as needed -->
+          </select>
+        </div>
+        <div>
+          <label for="areaFilterTeaching">Area:</label>
+          <select id="areaFilterTeaching">
+            <option value="">Select Area...</option>
+            <option value="urban">Urban</option>
+            <option value="rural">Rural</option>
+          </select>
+        </div>
+        <div>
+          <label for="governorateFilterTeaching">Governorate:</label>
+          <select id="governorateFilterTeaching">
+            <option value="">Select Governorate...</option>
+            <option value="governorate1">Governorate 1</option>
+            <option value="governorate2">Governorate 2</option>
+            <!-- Add more governorates as needed -->
+          </select>
+        </div>
+        <!-- Apply Filters button -->
+        <button id="filterButton">Filter</button>
+      </div>
+
+      <ul id="teachingPostsList">
+        <!-- Teaching posts list -->
+        <li
+          class="teaching-post subject-math area-urban governorate-governorate1"
+          data-students="30"
+          data-address="123 Main St, City"
+          data-map="GoogleMarkerURL"
+          data-subjects="Math, Science"
+        >
+          <a href="#">Math Teacher Needed</a>
+          <button class="info-btn">Info</button>
+        </li>
+        <li
+          class="teaching-post subject-english area-rural governorate-governorate2"
+          data-students="25"
+          data-address="456 Oak St, Town"
+          data-map="GoogleMarkerURL"
+          data-subjects="English"
+        >
+          <a href="#">English Tutor Required</a>
+          <button class="info-btn">Info</button>
+        </li>
+        <li
+          class="teaching-post subject-science area-urban governorate-governorate1"
+          data-students="20"
+          data-address="789 Elm St, Village"
+          data-map="GoogleMarkerURL"
+          data-subjects="Science"
+        >
+          <a href="#">Science Teacher Wanted</a>
+          <button class="info-btn">Info</button>
+        </li>
+        <li
+          class="teaching-post subject-history area-rural governorate-governorate3"
+          data-students="15"
+          data-address="101 Pine St, City"
+          data-map="GoogleMarkerURL"
+          data-subjects="History"
+        >
+          <a href="#">History Instructor Needed</a>
+          <button class="info-btn">Info</button>
+        </li>
+        <li
+          class="teaching-post subject-computer area-urban governorate-governorate2"
+          data-students="20"
+          data-address="202 Cedar St, Town"
+          data-map="GoogleMarkerURL"
+          data-subjects="Computer Science"
+        >
+          <a href="#">Computer Science Teacher Wanted</a>
+          <button class="info-btn">Info</button>
+        </li>
+        <li
+          class="teaching-post subject-music area-rural governorate-governorate1"
+          data-students="18"
+          data-address="303 Maple St, Village"
+          data-map="GoogleMarkerURL"
+          data-subjects="Music"
+        >
+          <a href="#">Music Instructor Needed</a>
+          <button class="info-btn">Info</button>
+        </li>
+        <li
+          class="teaching-post subject-physical-education area-urban governorate-governorate3"
+          data-students="25"
+          data-address="404 Walnut St, City"
+          data-map="GoogleMarkerURL"
+          data-subjects="Physical Education"
+        >
+          <a href="#">Physical Education Teacher Wanted</a>
+          <button class="info-btn">Info</button>
+        </li>
+        <li
+          class="teaching-post subject-arts area-rural governorate-governorate2"
+          data-students="20"
+          data-address="505 Cherry St, Town"
+          data-map="GoogleMarkerURL"
+          data-subjects="Arts"
+        >
+          <a href="#">Arts Instructor Needed</a>
+          <button class="info-btn">Info</button>
+        </li>
+        <li
+          class="teaching-post subject-language area-urban governorate-governorate1"
+          data-students="22"
+          data-address="606 Oak St, Village"
+          data-map="GoogleMarkerURL"
+          data-subjects="Language"
+        >
+          <a href="#">Language Teacher Wanted</a>
+          <button class="info-btn">Info</button>
+        </li>
+        <li
+          class="teaching-post subject-business area-rural governorate-governorate3"
+          data-students="18"
+          data-address="707 Pine St, City"
+          data-map="GoogleMarkerURL"
+          data-subjects="Business Studies"
+        >
+          <a href="#">Business Studies Instructor Needed</a>
+          <button class="info-btn">Info</button>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Modal for displaying teaching post details -->
+    <div id="teachingPostDetailsModal" style="display: none">
+      <h2>Teaching Post Details</h2>
+      <p>Number of Students: <span id="students"></span></p>
+      <p>Address: <span id="address"></span></p>
+      <p>Subjects: <span id="subjects"></span></p>
+      <button id="fulfillButton">Choose to Fulfill</button>
+    </div>
+
+    <script>
+      // Function to show teaching post details
+      function showTeachingPostDetails(students, address, subjects) {
+        const modal = document.getElementById("teachingPostDetailsModal");
+        const studentsElem = document.getElementById("students");
+        const addressElem = document.getElementById("address");
+        const subjectsElem = document.getElementById("subjects");
+
+        studentsElem.textContent = students;
+        addressElem.textContent = address;
+        subjectsElem.textContent = subjects;
+
+        modal.style.display = "block";
+      }
+
+      // Function to filter teaching posts
+      function filterTeachingPosts() {
+        const subject = document.getElementById("subjectFilterTeaching").value;
+        const area = document.getElementById("areaFilterTeaching").value;
+        const governorate = document.getElementById(
+          "governorateFilterTeaching"
+        ).value;
+        const teachingPosts = document.querySelectorAll(".teaching-post");
+
+        teachingPosts.forEach((post) => {
+          const postSubject = post.classList.contains("subject-" + subject);
+          const postArea = post.classList.contains("area-" + area);
+          const postGovernorate = post.classList.contains(
+            "governorate-" + governorate
+          );
+
+          if (
+            (subject === "" || postSubject) &&
+            (area === "" || postArea) &&
+            (governorate === "" || postGovernorate)
+          ) {
+            post.style.display = "block";
+          } else {
+            post.style.display = "none";
+          }
+        });
+      }
+
+      // Event listener for filtering teaching posts
+      document
+        .getElementById("filterButton")
+        .addEventListener("click", filterTeachingPosts);
+
+      // Event listener to display teaching post details
+      document.addEventListener("click", function (event) {
+        if (event.target.classList.contains("info-btn")) {
+          const listItem = event.target.closest(".teaching-post");
+          const students = listItem.getAttribute("data-students");
+          const address = listItem.getAttribute("data-address");
+          const subjects = listItem.getAttribute("data-subjects");
+          showTeachingPostDetails(students, address, subjects);
+        }
+      });
+
+      // Call a function to populate teaching posts when the page loads
+      window.onload = function () {
+        // Call a function to populate teaching posts (if needed)
+      };
+    </script>
+  </body>
+</html>

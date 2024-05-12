@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Medical Cases</title>
+  </head>
+  <body>
+    <div id="medicalCasesSection">
+      <!-- Medical cases section -->
+      <div id="filterSectionMedical">
+        <!-- Medical case filters -->
+        <div>
+          <label for="specialtyFilterMedical">Specialty:</label>
+          <select id="specialtyFilterMedical">
+            <option value="">Select Specialty...</option>
+            <option value="cardiology">Cardiology</option>
+            <option value="neurology">Neurology</option>
+            <!-- Add more specialties as needed -->
+          </select>
+        </div>
+        <div>
+          <label for="organizationFilterMedical">Organization:</label>
+          <select id="organizationFilterMedical">
+            <option value="">Select Organization...</option>
+            <option value="hospital1">Hospital 1</option>
+            <option value="clinic1">Clinic 1</option>
+            <!-- Add more organizations as needed -->
+          </select>
+        </div>
+        <div>
+          <label for="areaFilterMedical">Area:</label>
+          <select id="areaFilterMedical">
+            <option value="">Select Area...</option>
+            <option value="urban">maadi</option>
+            <option value="rural">tagmoo</option>
+            <option value="zayed">zayed</option>
+          </select>
+        </div>
+        <div>
+          <label for="governorateFilterMedical">Governorate:</label>
+          <select id="governorateFilterMedical">
+            <option value="">Select Governorate...</option>
+            <option value="governorate1">Governorate 1</option>
+            <option value="governorate2">Governorate 2</option>
+            <!-- Add more governorates as needed -->
+          </select>
+        </div>
+        <button id="filterButton">Filter</button>
+      </div>
+
+      <ul id="medicalCasesList">
+        <!-- Medical cases list -->
+        <li
+          class="medical-case specialty-cardiology organization-hospital1 area-urban governorate-governorate1"
+          data-patient-name="John Doe"
+          data-age="35"
+          data-gender="Male"
+          data-weight="70kg"
+          data-location="GoogleMarkerURL"
+          data-address="123 Main St, City"
+          data-description="Description of the medical case"
+        >
+          <a href="#">Cardiology Case - Hospital 1</a>
+          <button class="info-btn">Info</button>
+        </li>
+        <li
+          class="medical-case specialty-neurology organization-hospital2 area-urban governorate-governorate2"
+          data-patient-name="Jane Smith"
+          data-age="45"
+          data-gender="Female"
+          data-weight="65kg"
+          data-location="GoogleMarkerURL"
+          data-address="456 Oak St, Town"
+          data-description="Description of the medical case"
+        >
+          <a href="#">Neurology Case - Hospital 2</a>
+          <button class="info-btn">Info</button>
+        </li>
+        <li
+          class="medical-case specialty-pediatrics organization-clinic1 area-rural governorate-governorate1"
+          data-patient-name="Michael Johnson"
+          data-age="8"
+          data-gender="Male"
+          data-weight="25kg"
+          data-location="GoogleMarkerURL"
+          data-address="789 Elm St, Village"
+          data-description="Description of the medical case"
+        >
+          <a href="#">Pediatrics Case - Clinic 1</a>
+          <button class="info-btn">Info</button>
+        </li>
+        <li
+          class="medical-case specialty-orthopedics organization-hospital3 area-urban governorate-governorate3"
+          data-patient-name="Emily Brown"
+          data-age="60"
+          data-gender="Female"
+          data-weight="75kg"
+          data-location="GoogleMarkerURL"
+          data-address="101 Pine St, City"
+          data-description="Description of the medical case"
+        >
+          <a href="#">Orthopedics Case - Hospital 3</a>
+          <button class="info-btn">Info</button>
+        </li>
+        <li
+          class="medical-case specialty-oncology organization-hospital1 area-urban governorate-governorate2"
+          data-patient-name="David Wilson"
+          data-age="50"
+          data-gender="Male"
+          data-weight="80kg"
+          data-location="GoogleMarkerURL"
+          data-address="202 Cedar St, Town"
+          data-description="Description of the medical case"
+        >
+          <a href="#">Oncology Case - Hospital 1</a>
+          <button class="info-btn">Info</button>
+        </li>
+        <li
+          class="medical-case specialty-endocrinology organization-clinic2 area-rural governorate-governorate3"
+          data-patient-name="Sarah Lee"
+          data-age="40"
+          data-gender="Female"
+          data-weight="60kg"
+          data-location="GoogleMarkerURL"
+          data-address="303 Maple St, Village"
+          data-description="Description of the medical case"
+        >
+          <a href="#">Endocrinology Case - Clinic 2</a>
+          <button class="info-btn">Info</button>
+        </li>
+        <li
+          class="medical-case specialty-dentistry organization-clinic3 area-urban governorate-governorate1"
+          data-patient-name="Robert Garcia"
+          data-age="25"
+          data-gender="Male"
+          data-weight="N/A"
+          data-location="GoogleMarkerURL"
+          data-address="404 Walnut St, City"
+          data-description="Description of the medical case"
+        >
+          <a href="#">Dentistry Case - Clinic 3</a>
+          <button class="info-btn">Info</button>
+        </li>
+        <li
+          class="medical-case specialty-psychiatry organization-hospital2 area-urban governorate-governorate2"
+          data-patient-name="Megan Clark"
+          data-age="30"
+          data-gender="Female"
+          data-weight="N/A"
+          data-location="GoogleMarkerURL"
+          data-address="505 Cherry St, Town"
+          data-description="Description of the medical case"
+        >
+          <a href="#">Psychiatry Case - Hospital 2</a>
+          <button class="info-btn">Info</button>
+        </li>
+        <li
+          class="medical-case specialty-dermatology organization-hospital3 area-rural governorate-governorate3"
+          data-patient-name="Christopher Taylor"
+          data-age="55"
+          data-gender="Male"
+          data-weight="N/A"
+          data-location="GoogleMarkerURL"
+          data-address="606 Oak St, Village"
+          data-description="Description of the medical case"
+        >
+          <a href="#">Dermatology Case - Hospital 3</a>
+          <button class="info-btn">Info</button>
+        </li>
+        <li
+          class="medical-case specialty-gastroenterology organization-clinic1 area-urban governorate-governorate1"
+          data-patient-name="Ava Martinez"
+          data-age="35"
+          data-gender="Female"
+          data-weight="N/A"
+          data-location="GoogleMarkerURL"
+          data-address="707 Pine St, City"
+          data-description="Description of the medical case"
+        >
+          <a href="#">Gastroenterology Case - Clinic 1</a>
+          <button class="info-btn">Info</button>
+        </li>
+        <!-- Add more medical cases here -->
+      </ul>
+    </div>
+
+    <!-- Modal for displaying medical case details -->
+    <div id="medicalCaseDetailsModal" style="display: none">
+      <h2>Medical Case Details</h2>
+      <p>Patient Name: <span id="patientName"></span></p>
+      <p>Age: <span id="age"></span></p>
+      <p>Gender: <span id="gender"></span></p>
+      <p>Weight: <span id="weight"></span></p>
+      <p>Address: <span id="address"></span></p>
+      <p>Organization: <span id="organization"></span></p>
+      <p>Specialty: <span id="specialty"></span></p>
+      <p>Description: <span id="description"></span></p>
+      <button id="fulfillButton">Choose to Fulfill</button>
+    </div>
+
+    <script>
+      // Function to filter medical cases
+      function filterMedicalCases(category = "all") {
+        const specialty = document.getElementById(
+          "specialtyFilterMedical"
+        ).value;
+        const organization = document.getElementById(
+          "organizationFilterMedical"
+        ).value;
+        const area = document.getElementById("areaFilterMedical").value;
+        const governorate = document.getElementById(
+          "governorateFilterMedical"
+        ).value;
+
+        const medicalCases = document.querySelectorAll(".medical-case");
+
+        medicalCases.forEach((medicalCase) => {
+          const caseSpecialty = medicalCase.classList.contains(
+            "specialty-" + specialty
+          );
+          const caseOrganization = medicalCase.classList.contains(
+            "organization-" + organization
+          );
+          const caseArea = medicalCase.classList.contains("area-" + area);
+          const caseGovernorate = medicalCase.classList.contains(
+            "governorate-" + governorate
+          );
+
+          if (
+            (specialty === "" || caseSpecialty) &&
+            (organization === "" || caseOrganization) &&
+            (area === "" || caseArea) &&
+            (governorate === "" || caseGovernorate)
+          ) {
+            medicalCase.style.display = "block";
+          } else {
+            medicalCase.style.display = "none";
+          }
+        });
+      }
+
+      // Event listener for filtering medical cases
+      document
+        .getElementById("filterButton")
+        .addEventListener("click", filterMedicalCases);
+
+      // Function to display medical case details
+      function showMedicalCaseDetails(
+        patientName,
+        age,
+        gender,
+        weight,
+        address,
+        organization,
+        specialty,
+        description
+      ) {
+        document.getElementById("patientName").textContent = patientName;
+        document.getElementById("age").textContent = age;
+        document.getElementById("gender").textContent = gender;
+        document.getElementById("weight").textContent = weight;
+        document.getElementById("address").textContent = address;
+        document.getElementById("organization").textContent = organization;
+        document.getElementById("specialty").textContent = specialty;
+        document.getElementById("description").textContent = description;
+
+        // Display the modal
+        document.getElementById("medicalCaseDetailsModal").style.display =
+          "block";
+      }
+
+      // Function to handle choosing to fulfill a medical case
+      function chooseToFulfillMedicalCase() {
+        // Logic to fulfill the medical case
+        // For now, let's just close the modal
+        document.getElementById("medicalCaseDetailsModal").style.display =
+          "none";
+      }
+
+      // Event listener to display medical case details
+      document.addEventListener("click", function (event) {
+        if (event.target.classList.contains("info-btn")) {
+          const listItem = event.target.closest(".medical-case");
+          const patientName = listItem.getAttribute("data-patient-name");
+          const age = listItem.getAttribute("data-age");
+          const gender = listItem.getAttribute("data-gender");
+          const weight = listItem.getAttribute("data-weight");
+          const address = listItem.getAttribute("data-address");
+          const organization = listItem.getAttribute("data-organization");
+          const specialty = listItem.getAttribute("data-specialty");
+          const description = listItem.getAttribute("data-description");
+          showMedicalCaseDetails(
+            patientName,
+            age,
+            gender,
+            weight,
+            address,
+            organization,
+            specialty,
+            description
+          );
+        }
+      });
+
+      // Call a function to populate medical cases when the page loads
+      window.onload = function () {
+        // Call a function to populate medical cases (if needed)
+      };
+    </script>
+  </body>
+</html>
