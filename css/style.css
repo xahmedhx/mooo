@@ -1272,5 +1272,136 @@ a {
   cursor: pointer;
 }
 
+body {
+  font-family: Arial, sans-serif;
+  background-color: #fff; /* white background for the overall theme */
+}
+
+#myInput {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  border: 2px solid #000;
+}
+
+.filter-by {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.filter-label {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.filter-option select {
+  padding: 8px;
+  font-size: 14px;
+  border: 2px solid #000; /* orange border */
+}
+
+#remButton {
+  padding: 8px 16px;
+  background-color: #f86f2d; /* orange background */
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+#remButton:hover {
+  background-color: #e65e28;
+}
+
+.container1 {
+  width: 90%;
+  max-width: 1200px; /* wider layout */
+  margin: auto;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  background-color: #f9f9f9; /* light grey background */
+}
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.enlarge.card {
+  border: 1px solid #000; /* black border */
+  background-color: #fff; /* white background for cards */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  transition: transform 0.2s;
+}
+
+.enlarge.card:hover {
+  transform: scale(1.05);
+}
+
+.card-header h2 {
+  margin: 0;
+  color: #333;
+}
+
+.card-header {
+  background-color: #f86f2d; /* orange header */
+  padding: 10px;
+  font-size: 18px;
+  color: white;
+}
+
+.card-link {
+  text-decoration: none;
+  color: black;
+}
+
+.card p {
+  padding: 0 10px;
+  margin: 10px 0;
+  color: #333;
+}
+
+#myUL {
+  list-style-type: none; /* remove list-style dots */
+  padding: 0;
+}
+
+.card-link {
+  display: block;
+  margin-bottom: 10px; /* additional space between cards */
+}
+
+#overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 999; /* Ensures it's below the modal but above other content */
+  cursor: pointer;
+}
+
+#orgModal {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  border: 1px solid #ccc;
+  padding: 20px;
+  z-index: 1000; /* Ensures it's above the overlay */
+  width: 80%;
+  max-width: 600px;
+}
+
+
+
 
 

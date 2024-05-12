@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mooo</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+</head>
+<body>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light scrolled awake" id="ftco-navbar">
+        <div class="container">
+          <a class="navbar-brand" href="index.html">Mooo</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="oi oi-menu"></span> Menu
+          </button>
+    
+          <div class="collapse navbar-collapse" id="ftco-nav">
+            <ul class="navbar-nav ml-auto">
+              <div class="navbar-nav ml-auto koooo" >
+              <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
+              <li class="nav-item"><a href="signup.html" class="nav-link">Donate</a></li>
+              <li class="nav-item"><a href="organization.html" class="nav-link">Organization</a></li>
+              <li class="nav-item"><a href="contacts.html" class="nav-link">Contact</a></li>
+              </div>
+              <li class="nav-item cta cta-colored"><a href="login.html" class="btn">Login</a></li>
+              <li class="nav-item  cta1 cta-colored"><a href="signup.html" class="btn">Sign up</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+<div class="container1" style="margin-top: 100px;">
+  <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for organizations..">
+  <div class="filter-by">
+    <span class="filter-label">Filter:</span>
+    <div class="filter-option">
+      <select id="areaFilter" onchange="filterOrganizations()">
+        <option value="" class="sel">Select Area</option>
+        <option value="Maadi">Maadi</option>
+        <option value="Zamalek">Zamalek</option>
+        <option value="New Cairo">New Cairo </option>
+        <option value="Heliopolis">Heliopolis</option>
+        <option value="Nasr City">Nasr city </option>
+      </select>
+    </div>
+    <div class="filter-option">
+      <select id="typeFilter" onchange="filterOrganizations()">
+        <option value="" class="sel">Select Organization Type</option>
+        <option value="Medical">Medical</option>
+        <option value="Orphanage">Orphanage</option>
+        <option value="Education">Education</option>
+      </select>
+    </div>
+    <div class="filter-option">
+      <select id="governorateFilter" onchange="filterOrganizations()">
+        <option value="" class="sel">Select Governorate</option>
+        <option value="Cairo">Cairo</option>
+        <option value="Giza">Giza</option>
+        <option value="Assuit">Assuit</option>
+      </select>
+    </div>
+    <button onclick="removeFilters()" id="remButton">Remove Filters</button>
+  </div>
+
+
+
+  <div class="card-container">
+    <ul id="myUL">
+        <a href="#" class="card-link" data-lat="30.045" data-lng="31.496" data-area="New Cairo" data-type="Medical" data-governorate="Cairo" data-contact="0123456789">
+            <div class="enlarge card" data-area="New Cairo" data-type="Medical" data-governorate="Cairo">
+                <div class="card-header">
+                    <h2 class="color">
+                        <li>Hope Clinic</li>
+                    </h2>
+                </div>
+                <p>Hope Clinic provides comprehensive healthcare services focusing on maternal health and pediatric care to underprivileged communities.</p>
+            </div>
+        </a>
+        <a href="#" class="card-link" data-lat="30.0244" data-lng="33.2357" data-area="Maadi" data-type="Orphanage" data-governorate="Cairo" data-contact="0123456789">
+            <div class="enlarge card" data-area="Maadi" data-type="Orphanage" data-governorate="Cairo">
+                <div class="card-header">
+                    <h2 class="color">
+                        <li>Sunshine Home</li>
+                    </h2>
+                </div>
+                <p>Sunshine Home offers a nurturing environment for abandoned children, ensuring they receive education and emotional support.</p>
+            </div>
+        </a>
+        <a href="#" class="card-link" data-lat="30.0444" data-lng="31.2357" data-area="Zamalek" data-type="Education" data-governorate="Cairo" data-contact="0123456789">
+            <div class="enlarge card" data-area="Zamalek" data-type="Education" data-governorate="Cairo">
+                <div class="card-header">
+                    <h2 class="color">
+                        <li>Bridge Learning Center</li>
+                    </h2>
+                </div>
+                <p>Bridge Learning Center provides adult education and literacy programs aimed at empowering women through education.</p>
+            </div>
+        </a>
+        <a href="#" class="card-link" data-lat="30.0444" data-lng="31.2357" data-area="Nasr City" data-type="Medical" data-governorate="Cairo" data-contact="01233726789">
+            <div class="enlarge card" data-area="Nasr City" data-type="Medical" data-governorate="Cairo">
+                <div class="card-header">
+                    <h2 class="color">
+                        <li>City Hospital</li>
+                    </h2>
+                </div>
+                <p>City Hospital specializes in emergency care and has pioneered advanced trauma care techniques in the region.</p>
+            </div>
+        </a>
+        <a href="#" class="card-link" data-lat="31.0444" data-lng="31.2357" data-area="Heliopolis" data-type="Education" data-governorate="Cairo" data-contact="01223456789">
+            <div class="enlarge card" data-area="Heliopolis" data-type="Education" data-governorate="Cairo">
+                <div class="card-header">
+                    <h2 class="color">
+                        <li>Future Leaders Academy</li>
+                    </h2>
+                </div>
+                <p>Future Leaders Academy focuses on providing leadership and entrepreneurial skills to young adults to prepare them for global challenges.</p>
+            </div>
+        </a>
+    </ul>
+</div>
+</div>
+
+<div id="overlay" style="display:none;"></div>
+<div id="orgModal" style="display:none;">
+    <div id="orgName"></div>
+    <div id="orgType"></div>
+    <div id="orgArea"></div>
+    <div id="orgGovernorate"></div>
+    <div id="orgContact"></div>
+    <div id="orgDetails"></div>
+    <div id="orgMap" style="height: 250px;"></div>
+    <button onclick="closeModal()">Close</button>
+</div>
+
+
+
+  <script>
+    function myFunction() {
+      // Declare variables
+      var input, filter, ul, div, i, txtValue;
+      input = document.getElementById('myInput');
+      filter = input.value.toUpperCase();
+      ul = document.getElementById("myUL");
+      div = ul.getElementsByClassName('enlarge card');
+
+      // Loop through all div elements with class 'enlarge card' and hide those that don't match the search query
+      for (i = 0; i < div.length; i++) {
+        txtValue = div[i].textContent || div[i].innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          div[i].style.display = "";
+        } else {
+          div[i].style.display = "none";
+        }
+      }
+    }
+
+    function filterOrganizations() {
+      var area = document.getElementById("areaFilter").value;
+      var type = document.getElementById("typeFilter").value;
+      var governorate = document.getElementById("governorateFilter").value;
+
+      var organizations = document.querySelectorAll(".card-container .card");
+
+      organizations.forEach(function (org) {
+        var orgArea = org.getAttribute("data-area");
+        var orgType = org.getAttribute("data-type");
+        var orgGovernorate = org.getAttribute("data-governorate");
+
+        var areaMatch = (area === "" || orgArea === area);
+        var typeMatch = (type === "" || orgType === type);
+        var governorateMatch = (governorate === "" || orgGovernorate === governorate);
+
+        if (areaMatch && typeMatch && governorateMatch) {
+          org.style.display = "block";
+        } else {
+          org.style.display = "none";
+        }
+      });
+    }
+
+    function removeFilters() {
+  // Clear the selected options in all dropdown menus
+  document.getElementById("areaFilter").value = "";
+  document.getElementById("typeFilter").value = "";
+  document.getElementById("governorateFilter").value = "";
+
+  // Trigger the filtering function to update the organization list
+  filterOrganizations();
+}
+
+document.querySelectorAll('.card-link').forEach(item => {
+    item.addEventListener('click', function(e) {
+        e.preventDefault(); // Prevent the default anchor behavior
+
+        const name = this.querySelector('.card-header h2 li').textContent;
+        const details = this.querySelector('.card p').textContent;
+        const area = this.getAttribute('data-area');
+        const type = this.getAttribute('data-type');
+        const governorate = this.getAttribute('data-governorate');
+        const contact = this.getAttribute('data-contact');
+        const coords = [this.getAttribute('data-lat'), this.getAttribute('data-lng')];
+
+        document.getElementById('orgName').textContent = "Name: " + name;
+        document.getElementById('orgType').textContent = "Type: " + type;
+        document.getElementById('orgArea').textContent = "Area: " + area;
+        document.getElementById('orgGovernorate').textContent = "Governorate: " + governorate;
+        document.getElementById('orgContact').textContent = "Contact: " + contact;
+        document.getElementById('orgDetails').textContent = details;
+
+        showModal();
+        initMap(coords);
+    });
+});
+
+let map = null; // Declare map globally
+
+function initMap(coords) {
+    if (map !== null) {
+        map.remove(); // This destroys the old map
+    }
+    map = L.map('orgMap').setView(coords, 13);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    L.marker(coords).addTo(map)
+        .openPopup();
+}
+
+function showModal() {
+    document.getElementById('orgModal').style.display = 'block';
+    document.getElementById('overlay').style.display = 'block'; // Show the overlay
+}
+
+function closeModal() {
+    document.getElementById('orgModal').style.display = 'none';
+    document.getElementById('overlay').style.display = 'none'; // Hide the overlay
+}
+
+
+
+
+  </script>
+
+
+    <script src="js/our.js"></script>
+</body>
+
+
+</html>

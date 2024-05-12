@@ -8,11 +8,12 @@ document.addEventListener('DOMContentLoaded', function() {
             if (username=== "admin") {
                 nav.innerHTML = `
                     <ul class="navbar-nav ml-auto">
-                        <div class="navbar-nav ml-auto koooo">
-                            <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
-                            <li class="nav-item"><a href="donate.html" class="nav-link">Donate</a></li>
-                            <li class="nav-item"><a href="contacts.html" class="nav-link">Contact</a></li>
-                        </div>
+                    <div class="navbar-nav ml-auto koooo" >
+                    <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="signup.html" class="nav-link">Donate</a></li>
+                    <li class="nav-item"><a href="organization.html" class="nav-link">Organization</a></li>
+                    <li class="nav-item"><a href="contacts.html" class="nav-link">Contact</a></li>
+                    </div>
                         <li class="nav-item"><a href="admin.html" class="nav-link">Welcome, ${username}</a></li>
                         <li class="nav-item"><a href="#" class="nav-link" onclick="logout()">Logout</a></li>
                     </ul>
@@ -20,11 +21,12 @@ document.addEventListener('DOMContentLoaded', function() {
             } else if(username=== "donor") {
                 nav.innerHTML = `
                     <ul class="navbar-nav ml-auto">
-                        <div class="navbar-nav ml-auto koooo">
-                            <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
-                            <li class="nav-item"><a href="donate.html" class="nav-link">Donate</a></li>
-                            <li class="nav-item"><a href="contacts.html" class="nav-link">Contact</a></li>
-                        </div>
+                    <div class="navbar-nav ml-auto koooo" >
+                    <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="signup.html" class="nav-link">Donate</a></li>
+                    <li class="nav-item"><a href="organization.html" class="nav-link">Organization</a></li>
+                    <li class="nav-item"><a href="contacts.html" class="nav-link">Contact</a></li>
+                    </div>
                         <li class="nav-item"><a href="donor.html" class="nav-link">Welcome, ${username}</a></li>
                         <li class="nav-item"><a href="#" class="nav-link" onclick="logout()">Logout</a></li>
                     </ul>
@@ -33,23 +35,25 @@ document.addEventListener('DOMContentLoaded', function() {
             }else if (username=== "organization"){
                 nav.innerHTML = `
                 <ul class="navbar-nav ml-auto">
-                    <div class="navbar-nav ml-auto koooo">
-                        <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
-                        <li class="nav-item"><a href="donate.html" class="nav-link">Donate</a></li>
-                        <li class="nav-item"><a href="contacts.html" class="nav-link">Contact</a></li>
-                    </div>
-                    <li class="nav-item"><a href="organization.html" class="nav-link">Welcome, ${username}</a></li>
+                <div class="navbar-nav ml-auto koooo" >
+                <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="signup.html" class="nav-link">Donate</a></li>
+                <li class="nav-item"><a href="organization.html" class="nav-link">Organization</a></li>
+                <li class="nav-item"><a href="contacts.html" class="nav-link">Contact</a></li>
+                </div>
+                    <li class="nav-item"><a href="organizationPage.html" class="nav-link">Welcome, ${username}</a></li>
                     <li class="nav-item"><a href="#" class="nav-link" onclick="logout()">Logout</a></li>
                 </ul>
             `;
             }else{
                 nav.innerHTML = `
                     <ul class="navbar-nav ml-auto">
-                        <div class="navbar-nav ml-auto koooo">
-                            <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
-                            <li class="nav-item"><a href="donate.html" class="nav-link">Donate</a></li>
-                            <li class="nav-item"><a href="contacts.html" class="nav-link">Contact</a></li>
-                        </div>
+                       <div class="navbar-nav ml-auto koooo" >
+          <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="signup.html" class="nav-link">Donate</a></li>
+          <li class="nav-item"><a href="organization.html" class="nav-link">Organization</a></li>
+          <li class="nav-item"><a href="contacts.html" class="nav-link">Contact</a></li>
+          </div>
                         <li class="nav-item cta cta-colored"><a href="login.html" class="btn">Login</a></li>
                         <li class="nav-item cta1 cta-colored"><a href="signup.html" class="btn">Sign up</a></li>
                     </ul>
@@ -352,6 +356,7 @@ function addMarker(e) {
 map.on('click', addMarker);
 });
 /////////////// 
+
 
 
 
