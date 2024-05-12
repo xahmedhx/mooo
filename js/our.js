@@ -105,56 +105,28 @@ document.addEventListener("DOMContentLoaded", function() {
             console.error("Error fetching organization names:", error);
         });
 
-    // Registration form submission
+  
     const registrationForm = document.getElementById("registration-form");
     registrationForm.addEventListener("submit", function(event) {
         event.preventDefault();
-        // Perform form submission logic (e.g., validation, AJAX request)
-        // Example:
-        // const formData = new FormData(this);
-        // fetch("registration.php", {
-        //     method: "POST",
-        //     body: formData
-        // })
-        // .then(response => response.json())
-        // .then(data => {
-        //     console.log(data);
-        // })
-        // .catch(error => {
-        //     console.error("Error:", error);
-        // });
         alert("Registration form submitted!");
     });
 
-    // Donation submission form submission
+   
     const donationForm = document.getElementById("donation-form");
     donationForm.addEventListener("submit", function(event) {
         event.preventDefault();
-        // Perform form submission logic (e.g., validation, AJAX request)
-        // Example:
-        // const formData = new FormData(this);
-        // fetch("donation_submission.php", {
-        //     method: "POST",
-        //     body: formData
-        // })
-        // .then(response => response.json())
-        // .then(data => {
-        //     console.log(data);
-        // })
-        // .catch(error => {
-        //     console.error("Error:", error);
-        // });
         alert("Donation submission form submitted!");
     });
 });
 
 function filterOrganizations() {
     let input = document.getElementById('organization-search-input').value.toUpperCase();
-    let table = document.getElementById('organizations-table'); // Make sure your table has this ID
+    let table = document.getElementById('organizations-table'); 
     let tr = table.getElementsByTagName('tr');
 
     for (let i = 0; i < tr.length; i++) {
-        let td = tr[i].getElementsByTagName('td')[0]; // Assuming the name is in the first column
+        let td = tr[i].getElementsByTagName('td')[0]; 
         if (td) {
             let textValue = td.textContent || td.innerText;
             if (textValue.toUpperCase().indexOf(input) > -1) {
@@ -164,12 +136,12 @@ function filterOrganizations() {
             }
         }
     }
-}
+    }
 
 
 function filterDonors() {
     let input = document.getElementById('donor-search-input').value.toUpperCase();
-    let table = document.getElementById('donors-table'); // Make sure your table has this ID
+    let table = document.getElementById('donors-table'); 
     let tr = table.getElementsByTagName('tr');
 
     for (let i = 0; i < tr.length; i++) {
@@ -279,4 +251,5 @@ function deleteAccount() {
         
     }
 }
+
 

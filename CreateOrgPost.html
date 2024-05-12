@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mooo</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light scrolled awake" id="ftco-navbar">
+        <div class="container">
+          <a class="navbar-brand" href="index.html">Mooo</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="oi oi-menu"></span> Menu
+          </button>
+          <div class="collapse navbar-collapse" id="ftco-nav">
+            <ul class="navbar-nav ml-auto">
+              <div class="navbar-nav ml-auto koooo" >
+              <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
+              <li class="nav-item"><a href="contacts.html" class="nav-link">Contact</a></li>
+              </div>
+              <li class="nav-item cta cta-colored"><a href="index.html" class="btn">logout</a></li>
+              
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+
+      <div class="form-container">
+        <h2>Create Donation Post</h2>
+        <form id="donationForm">
+            <label for="category">Category:</label>
+            <select id="category" name="category">
+                <option value="clothes">Clothes</option>
+                <option value="toys">Toys</option>
+                <option value="food">Food</option>
+                <option value="medical">Medical Supplies</option>
+                <option value="school">School Supplies</option>
+                <option value="blood">Blood Donations</option>
+            </select>
+            <label for="details">Details:</label>
+            <textarea id="details" name="details" placeholder="Enter details about the donation..."></textarea>
+            <button type="submit">Submit Post</button>
+        </form>
+    </div>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 300px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 5px;
+        }
+
+        select, textarea {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #f86f2d;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #f86f2d;
+        }
+
+    </style>
+
+    </body>
+    <script>
+            document.getElementById('donationForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const category = document.getElementById('category').value;
+    const details = document.getElementById('details').value;
+
+  
+    console.log('Submitting Donation Post:', { category, details });
+    
+    alert('Donation post submitted successfully!');
+});
+
+
+    </script>
+        
+</html>

@@ -863,7 +863,7 @@ margin-right: 240px;
     padding-top: 0.9rem !important;
     padding-bottom: 0.9rem !important;
     color: #000 !important;
-}
+  }
 
 a {
   -webkit-transition: .3s all ease;
@@ -896,7 +896,7 @@ a {
 }
 
 [class^="icon-"], [class*=" icon-"] {
-  /* use !important to prevent issues with browser extensions that change fonts */
+  
   font-family: 'icomoon' !important;
 
   font-style: normal;
@@ -905,7 +905,6 @@ a {
   text-transform: none;
   line-height: 1;
 
-  /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -913,6 +912,7 @@ a {
 .icon-map-marker:before {
   content: "\f041";
 }
+
 .icon-phone:before {
   content: "\f095";
 }
@@ -1135,7 +1135,7 @@ header {
   display: block;
 }
 .modal {
-    display: none; /* Modal hidden by default */
+    display: none; 
     position: fixed;
     z-index: 1000;
     left: 0;
@@ -1150,7 +1150,7 @@ header {
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 50%; /* Adjust as necessary */
+    width: 50%; 
 }
 
 
